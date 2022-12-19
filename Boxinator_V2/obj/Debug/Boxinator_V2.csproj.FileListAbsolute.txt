@@ -1,0 +1,15 @@
+C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\bin\Debug\Boxinator_V2.exe.config
+C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\bin\Debug\Boxinator_V2.exe
+C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\bin\Debug\Boxinator_V2.pdb
+C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\obj\Debug\Boxinator_V2.csproj.AssemblyReference.cache
+C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\obj\Debug\Boxinator_V2.csproj.SuggestedBindingRedirects.cache
+C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\obj\Debug\Boxinator_V2.FormMenu.resources
+C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\obj\Debug\Boxinator_V2.Properties.Resources.resources
+C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\obj\Debug\Boxinator_V2.csproj.GenerateResource.cache
+C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\obj\Debug\Boxinator_V2.csproj.CoreCompileInputs.cache
+C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\obj\Debug\Boxinator_V2.exe
+C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\obj\Debug\Boxinator_V2.pdb
+C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\obj\Debug\Boxinator_V2.Usercontrol.dboard.resources
+C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\obj\Debug\Boxinator_V2.Usercontrol.newProject.resources
+C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\obj\Debug\Boxinator_V2.Usercontrol.home.resources
+C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\obj\Debug\Boxinator_V2.Usercontrol.openProject.resources
