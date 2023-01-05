@@ -13,3 +13,18 @@ C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\obj\Debug\Boxinator_V2.Use
 C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\obj\Debug\Boxinator_V2.Usercontrol.newProject.resources
 C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\obj\Debug\Boxinator_V2.Usercontrol.home.resources
 C:\Users\Henri\source\repos\Boxinator_V2\Boxinator_V2\obj\Debug\Boxinator_V2.Usercontrol.openProject.resources
+G:\Programmering\C# Projects\Boxinator_F\Boxinator_V2\bin\Debug\Boxinator_V2.exe.config
+G:\Programmering\C# Projects\Boxinator_F\Boxinator_V2\bin\Debug\Boxinator_V2.exe
+G:\Programmering\C# Projects\Boxinator_F\Boxinator_V2\bin\Debug\Boxinator_V2.pdb
+G:\Programmering\C# Projects\Boxinator_F\Boxinator_V2\obj\Debug\Boxinator_V2.csproj.AssemblyReference.cache
+G:\Programmering\C# Projects\Boxinator_F\Boxinator_V2\obj\Debug\Boxinator_V2.csproj.SuggestedBindingRedirects.cache
+G:\Programmering\C# Projects\Boxinator_F\Boxinator_V2\obj\Debug\Boxinator_V2.FormMenu.resources
+G:\Programmering\C# Projects\Boxinator_F\Boxinator_V2\obj\Debug\Boxinator_V2.Properties.Resources.resources
+G:\Programmering\C# Projects\Boxinator_F\Boxinator_V2\obj\Debug\Boxinator_V2.Usercontrol.dboard.resources
+G:\Programmering\C# Projects\Boxinator_F\Boxinator_V2\obj\Debug\Boxinator_V2.Usercontrol.home.resources
+G:\Programmering\C# Projects\Boxinator_F\Boxinator_V2\obj\Debug\Boxinator_V2.Usercontrol.newProject.resources
+G:\Programmering\C# Projects\Boxinator_F\Boxinator_V2\obj\Debug\Boxinator_V2.Usercontrol.openProject.resources
+G:\Programmering\C# Projects\Boxinator_F\Boxinator_V2\obj\Debug\Boxinator_V2.csproj.GenerateResource.cache
+G:\Programmering\C# Projects\Boxinator_F\Boxinator_V2\obj\Debug\Boxinator_V2.csproj.CoreCompileInputs.cache
+G:\Programmering\C# Projects\Boxinator_F\Boxinator_V2\obj\Debug\Boxinator_V2.exe
+G:\Programmering\C# Projects\Boxinator_F\Boxinator_V2\obj\Debug\Boxinator_V2.pdb
