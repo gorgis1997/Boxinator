@@ -11,19 +11,20 @@ using System.Windows.Forms;
 
 namespace Boxinator_V2
 {
-    public partial class FormMenu : Form
-    {
+    public partial class FormMenu : Form {
+        private readonly home _home = new home();
+        private readonly dboard _dashboard = new dboard();
+        private readonly newProject _newProject = new newProject();
+        private readonly openProject _openProject = new openProject();
+
         public FormMenu()
         {
             InitializeComponent();
-            home hm = new home();
-            addUserControl(hm);
-     
+            addUserControl(_home);
         }
 
         private void addUserControl(UserControl userControl)
         {
-            userControl.Dock = DockStyle.Fill;
             panelMainWindow.Controls.Clear();
             panelMainWindow.Controls.Add(userControl);
             userControl.BringToFront();
@@ -32,60 +33,34 @@ namespace Boxinator_V2
         private void highlightButton(Button button)
         {
             Button[] buttons = { dashboardButton, newButton, openButton, saveButton, categoryButton, docsButton };
-            foreach (Button b in buttons)
-            {
-                if (b == button) 
-                {
-                    b.BackColor = Color.FromArgb(127, 92, 255);
-                }
-                else
-                {
-                    b.BackColor = Color.FromArgb(7, 14, 21);
-                }
+            foreach (Button b in buttons) {
+                b.BackColor = b == button ? Color.FromArgb(127, 92, 255) : Color.FromArgb(7, 14, 21);
             }
         }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void Logotype_Click(object sender, EventArgs e)
         {
             highlightButton(null);
-            home hm = new home();
-            addUserControl(hm);
+            addUserControl(_home);
         }
 
         private void openButton_Click(object sender, EventArgs e)
         {
             highlightButton(openButton);
-            openProject opP = new openProject();
-            addUserControl(opP);
-        }
-
-        private void panelMainWindow_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panelMenu_Paint(object sender, PaintEventArgs e)
-        {
-
+            addUserControl(_openProject);
         }
 
         private void dashboardButton_Click(object sender, EventArgs e)
         {
             highlightButton(dashboardButton);
-            dboard db = new dboard();
-            addUserControl(db);
+            addUserControl(_dashboard);
         }
 
         private void newButton_Click(object sender, EventArgs e)
         {
             highlightButton(newButton);
-            newProject np = new newProject();
-            addUserControl(np);
+            addUserControl(_newProject);
         }
     }
 }
