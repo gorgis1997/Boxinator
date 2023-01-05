@@ -30,7 +30,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.ProjectName = new System.Windows.Forms.TextBox();
+            this.tb_projectName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -73,19 +73,19 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Title = "Open file";
             // 
-            // ProjectName
+            // tb_projectName
             // 
-            this.ProjectName.AcceptsReturn = true;
-            this.ProjectName.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProjectName.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (12)))), ((int) (((byte) (22)))), ((int) (((byte) (31)))));
-            this.ProjectName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ProjectName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.ProjectName.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.ProjectName.Location = new System.Drawing.Point(30, 105);
-            this.ProjectName.Name = "ProjectName";
-            this.ProjectName.Size = new System.Drawing.Size(524, 22);
-            this.ProjectName.TabIndex = 8;
-            this.ProjectName.TextChanged += new System.EventHandler(this.ProjectName_TextChanged);
+            this.tb_projectName.AcceptsReturn = true;
+            this.tb_projectName.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.tb_projectName.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (12)))), ((int) (((byte) (22)))), ((int) (((byte) (31)))));
+            this.tb_projectName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_projectName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.tb_projectName.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.tb_projectName.Location = new System.Drawing.Point(30, 105);
+            this.tb_projectName.Name = "tb_projectName";
+            this.tb_projectName.Size = new System.Drawing.Size(524, 22);
+            this.tb_projectName.TabIndex = 8;
+            this.tb_projectName.TextChanged += new System.EventHandler(this.ProjectName_TextChanged);
             // 
             // label2
             // 
@@ -197,6 +197,7 @@
             this.btn_submit_new_project.TabIndex = 16;
             this.btn_submit_new_project.Text = "SUBMIT";
             this.btn_submit_new_project.UseVisualStyleBackColor = false;
+            this.btn_submit_new_project.Click += new System.EventHandler(this.btn_submit_new_project_Click);
             // 
             // label5
             // 
@@ -239,6 +240,7 @@
             this.btn_select_folder.TabIndex = 17;
             this.btn_select_folder.Text = "Select folder";
             this.btn_select_folder.UseVisualStyleBackColor = false;
+            this.btn_select_folder.Click += new System.EventHandler(this.btn_select_folder_Click);
             // 
             // rb_video
             // 
@@ -280,7 +282,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.ProjectName);
+            this.Controls.Add(this.tb_projectName);
             this.Controls.Add(this.panel1);
             this.Name = "newProject";
             this.Size = new System.Drawing.Size(587, 474);
@@ -302,7 +304,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.TextBox ProjectName;
+        private System.Windows.Forms.TextBox tb_projectName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label3;
