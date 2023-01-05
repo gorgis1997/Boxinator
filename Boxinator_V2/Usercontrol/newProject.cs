@@ -15,6 +15,10 @@ namespace Boxinator_V2.Usercontrol {
             InitializeComponent();
         }
 
+        public string ProjectName {get;set;}
+        public string ProjectPath {get;set;}
+        public bool ProjectModeIsVideo {get;set;}
+        
         private void button1_Click(object sender, EventArgs e) {
             OpenFileDialog openFileDialog1 = new OpenFileDialog() {
                 InitialDirectory = @"C:\",
@@ -82,7 +86,7 @@ namespace Boxinator_V2.Usercontrol {
                 if (rb_video.Checked) {
                     // Check if video file exists
                     if (System.IO.File.Exists(tb_videopath.Text)) {
-                        // TODO: Create new project
+                        SubmitNewProject();
                     }
                     else {
                         MessageBox.Show(Resources.Video_file_does_not_exist);
@@ -91,13 +95,20 @@ namespace Boxinator_V2.Usercontrol {
                 else {
                     // Check if folder exists
                     if (System.IO.Directory.Exists(tb_folderpath.Text)) {
-                        // TODO: Create new project
+                        SubmitNewProject();
                     }
                     else {
                         MessageBox.Show(Resources.Folder_does_not_exist);
                     }
                 }
             }
+        }
+
+        private void SubmitNewProject() {
+            this.ProjectName = tb_projectName.Text;
+            this.ProjectPath = rb_video.Checked ? tb_videopath.Text : tb_folderpath.Text;
+            this.ProjectModeIsVideo = rb_video.Checked;
+            this.Parent.Controls.Remove(this);
         }
     }
 }
