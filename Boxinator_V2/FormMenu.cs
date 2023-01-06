@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Boxinator_V2.Properties;
 
 namespace Boxinator_V2
 {
@@ -16,18 +17,48 @@ namespace Boxinator_V2
         private readonly dboard _dashboard = new dboard();
         private readonly newProject _newProject = new newProject();
         private readonly openProject _openProject = new openProject();
+        
+        private Button _submitButton;
 
         public FormMenu()
         {
             InitializeComponent();
+            CreateSubmitButton();
+            _home.Dock = DockStyle.Fill;
+            _dashboard.Dock = DockStyle.Fill;
+            _newProject.Dock = DockStyle.Fill;
+            _openProject.Dock = DockStyle.Fill;
             addUserControl(_home);
         }
 
+        private void CreateSubmitButton() {
+            _submitButton = new Button();
+            _submitButton.Text = Resources.Submit;
+            _submitButton.Size = new Size(150, 60);
+            _submitButton.Location = new Point(10, Size.Height - 50 - _submitButton.Size.Height);
+            _submitButton.Visible = false;
+            _submitButton.Enabled = false;
+            _submitButton.Click += new EventHandler(SubmitNewProject);
+        }
+
+        private static void SubmitNewProject(object sender, EventArgs e) {
+            // Todo - Submit new project to database
+        }
+        
         private void addUserControl(UserControl userControl)
         {
             panelMainWindow.Controls.Clear();
             panelMainWindow.Controls.Add(userControl);
-            userControl.BringToFront();
+            if (userControl == _newProject) {
+                panelMainWindow.Controls.Add(_submitButton);
+                _submitButton.Visible = true;
+                _submitButton.Enabled = true;
+                _submitButton.BringToFront();
+            }
+            else {
+                _submitButton.Visible = false;
+                _submitButton.Enabled = false;
+            }
         }
 
         private void highlightButton(Button button)
