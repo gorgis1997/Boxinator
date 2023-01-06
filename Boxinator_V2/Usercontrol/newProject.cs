@@ -13,11 +13,22 @@ namespace Boxinator_V2.Usercontrol {
     public partial class newProject : UserControl {
         public newProject() {
             InitializeComponent();
+            _projectModeIsVideo = rb_video.Checked;
+            _projectPath = "";
+            _projectName = "";
+
+            rb_video.CheckedChanged += ChangeInputMode;
+            rb_images.CheckedChanged += ChangeInputMode;
         }
 
-        public string ProjectName {get;set;}
-        public string ProjectPath {get;set;}
-        public bool ProjectModeIsVideo {get;set;}
+        private string _projectName;
+        private string _projectPath;
+        private bool _projectModeIsVideo;
+        
+        public string ProjectName => _projectName;
+        public string ProjectPath => _projectPath;
+        public bool ProjectModeIsVideo => _projectModeIsVideo;
+      
         
         private void button1_Click(object sender, EventArgs e) {
             OpenFileDialog openFileDialog1 = new OpenFileDialog() {
@@ -41,33 +52,36 @@ namespace Boxinator_V2.Usercontrol {
             }
         }
 
-        private void ProjectName_TextChanged(object sender, EventArgs e) { }
+        private void ProjectName_TextChanged(object sender, EventArgs e) {
+            _projectName = tb_projectName.Text;
+        }
+        private void tb_videopath_TextChanged(object sender, EventArgs e) {
+            _projectPath = tb_videopath.Text;
+        }
 
-        private void changeInputMode() {
+        private void tb_folderpath_TextChanged(object sender, EventArgs e) {
+            _projectPath = tb_folderpath.Text;
+        }
+
+        private void ChangeInputMode(object sender, EventArgs e) {
             // Enable video input if video radio button is checked
             // Enable folder input if image radio button is checked
             if (rb_video.Checked) {
+                _projectModeIsVideo = true;
                 tb_videopath.Enabled = true;
                 btn_select_video.Enabled = true;
                 tb_folderpath.Enabled = false;
                 btn_select_folder.Enabled = false;
             }
             else {
+                _projectModeIsVideo = false;
                 tb_videopath.Enabled = false;
                 btn_select_video.Enabled = false;
                 tb_folderpath.Enabled = true;
                 btn_select_folder.Enabled = true;
             }
         }
-
-        private void rb_video_CheckedChanged(object sender, EventArgs e) {
-            changeInputMode();
-        }
-
-        private void rb_images_CheckedChanged(object sender, EventArgs e) {
-            changeInputMode();
-        }
-
+        
         private void btn_select_folder_Click(object sender, EventArgs e) {
             // Open folder browser dialog
             FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
@@ -75,40 +89,6 @@ namespace Boxinator_V2.Usercontrol {
                 tb_folderpath.Text = folderBrowserDialog1.SelectedPath;
             }
         }
-
-        private void btn_submit_new_project_Click(object sender, EventArgs e) {
-            // Check if all fields are filled
-            if (tb_projectName.Text == "" && (tb_videopath.Text == "" || tb_folderpath.Text == "")) {
-                MessageBox.Show(Resources.Please_fill_in_all_fields);
-            }
-            else {
-                // Check if video or image input is selected
-                if (rb_video.Checked) {
-                    // Check if video file exists
-                    if (System.IO.File.Exists(tb_videopath.Text)) {
-                        SubmitNewProject();
-                    }
-                    else {
-                        MessageBox.Show(Resources.Video_file_does_not_exist);
-                    }
-                }
-                else {
-                    // Check if folder exists
-                    if (System.IO.Directory.Exists(tb_folderpath.Text)) {
-                        SubmitNewProject();
-                    }
-                    else {
-                        MessageBox.Show(Resources.Folder_does_not_exist);
-                    }
-                }
-            }
-        }
-
-        private void SubmitNewProject() {
-            this.ProjectName = tb_projectName.Text;
-            this.ProjectPath = rb_video.Checked ? tb_videopath.Text : tb_folderpath.Text;
-            this.ProjectModeIsVideo = rb_video.Checked;
-            this.Parent.Controls.Remove(this);
-        }
+        
     }
 }
