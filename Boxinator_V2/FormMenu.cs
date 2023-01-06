@@ -38,11 +38,50 @@ namespace Boxinator_V2
             _submitButton.Location = new Point(10, Size.Height - 50 - _submitButton.Size.Height);
             _submitButton.Visible = false;
             _submitButton.Enabled = false;
-            _submitButton.Click += new EventHandler(SubmitNewProject);
+            _submitButton.Click += SubmitNewProject;
         }
 
-        private static void SubmitNewProject(object sender, EventArgs e) {
-            // Todo - Submit new project to database
+        private void SubmitNewProject(object sender, EventArgs e) {
+            if (string.IsNullOrEmpty(_newProject.ProjectName) || string.IsNullOrEmpty(_newProject.ProjectPath)) {
+                MessageBox.Show("FILL OUT THE FIELDS YO", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            // Video mode
+            else if (_newProject.ProjectModeIsVideo) {
+                // Check path if video file exists
+                if (!System.IO.File.Exists(_newProject.ProjectPath)) {
+                    MessageBox.Show("Video file does not exist", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else {
+                    /*
+                    // Create new project
+                    Project newProject = new Project(_newProject.ProjectName, _newProject.ProjectPath, _newProject.ProjectModeIsVideo);
+                    // Add project to list
+                    ProjectList.AddProject(newProject);
+                    // Add project to listbox
+                    _openProject.AddProjectToListBox(newProject);
+                    // Switch to open project
+                    addUserControl(_openProject);
+                    */
+                }
+            }
+            else {
+                // Check that the folder exists
+                if (!System.IO.Directory.Exists(_newProject.ProjectPath)) {
+                    MessageBox.Show("Folder does not exist", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else {
+                    /*
+                    // Create new project
+                    Project newProject = new Project(_newProject.ProjectName, _newProject.ProjectPath, _newProject.ProjectModeIsVideo);
+                    // Add project to list
+                    ProjectList.AddProject(newProject);
+                    // Add project to listbox
+                    _openProject.AddProjectToListBox(newProject);
+                    // Switch to open project
+                    addUserControl(_openProject);
+                    */
+                }
+            }
         }
         
         private void addUserControl(UserControl userControl)
