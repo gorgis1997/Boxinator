@@ -38,7 +38,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tb_videopath = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.btn_submit_new_project = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.tb_folderpath = new System.Windows.Forms.TextBox();
             this.btn_select_folder = new System.Windows.Forms.Button();
@@ -166,6 +165,7 @@
             this.tb_videopath.Name = "tb_videopath";
             this.tb_videopath.Size = new System.Drawing.Size(419, 22);
             this.tb_videopath.TabIndex = 13;
+            this.tb_videopath.TextChanged += new System.EventHandler(this.tb_videopath_TextChanged);
             // 
             // button2
             // 
@@ -182,22 +182,6 @@
             this.button2.TabIndex = 15;
             this.button2.Text = "Create new";
             this.button2.UseVisualStyleBackColor = false;
-            // 
-            // btn_submit_new_project
-            // 
-            this.btn_submit_new_project.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
-            this.btn_submit_new_project.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_submit_new_project.FlatAppearance.BorderSize = 0;
-            this.btn_submit_new_project.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_submit_new_project.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.btn_submit_new_project.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_submit_new_project.Location = new System.Drawing.Point(30, 367);
-            this.btn_submit_new_project.Name = "btn_submit_new_project";
-            this.btn_submit_new_project.Size = new System.Drawing.Size(110, 36);
-            this.btn_submit_new_project.TabIndex = 16;
-            this.btn_submit_new_project.Text = "SUBMIT";
-            this.btn_submit_new_project.UseVisualStyleBackColor = false;
-            this.btn_submit_new_project.Click += new System.EventHandler(this.btn_submit_new_project_Click);
             // 
             // label5
             // 
@@ -223,6 +207,7 @@
             this.tb_folderpath.Name = "tb_folderpath";
             this.tb_folderpath.Size = new System.Drawing.Size(419, 22);
             this.tb_folderpath.TabIndex = 18;
+            this.tb_folderpath.TextChanged += new System.EventHandler(this.tb_folderpath_TextChanged);
             // 
             // btn_select_folder
             // 
@@ -252,7 +237,6 @@
             this.rb_video.TabStop = true;
             this.rb_video.Text = "Video mode";
             this.rb_video.UseVisualStyleBackColor = true;
-            this.rb_video.CheckedChanged += new System.EventHandler(this.rb_video_CheckedChanged);
             // 
             // rb_images
             // 
@@ -262,7 +246,6 @@
             this.rb_images.TabIndex = 21;
             this.rb_images.Text = "Image mode";
             this.rb_images.UseVisualStyleBackColor = true;
-            this.rb_images.CheckedChanged += new System.EventHandler(this.rb_images_CheckedChanged);
             // 
             // newProject
             // 
@@ -274,7 +257,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tb_folderpath);
             this.Controls.Add(this.btn_select_folder);
-            this.Controls.Add(this.btn_submit_new_project);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tb_videopath);
@@ -312,6 +294,5 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tb_videopath;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button btn_submit_new_project;
     }
 }
