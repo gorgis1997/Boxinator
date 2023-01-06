@@ -78,6 +78,15 @@ namespace Boxinator_V2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Submit.
+        /// </summary>
+        internal static string Submit {
+            get {
+                return ResourceManager.GetString("Submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Video file does not exist.
         /// </summary>
         internal static string Video_file_does_not_exist {

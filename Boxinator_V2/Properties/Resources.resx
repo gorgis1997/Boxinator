@@ -123,4 +123,7 @@
   <data name="Please_fill_in_all_fields" xml:space="preserve">
     <value>Please fill in all fields</value>
   </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
 </root>
