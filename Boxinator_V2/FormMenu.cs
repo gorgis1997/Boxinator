@@ -52,16 +52,9 @@ namespace Boxinator_V2
                     MessageBox.Show("Video file does not exist", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else {
-                    /*
-                    // Create new project
-                    Project newProject = new Project(_newProject.ProjectName, _newProject.ProjectPath, _newProject.ProjectModeIsVideo);
-                    // Add project to list
-                    ProjectList.AddProject(newProject);
-                    // Add project to listbox
-                    _openProject.AddProjectToListBox(newProject);
-                    // Switch to open project
-                    addUserControl(_openProject);
-                    */
+                    MessageBox.Show("Not implemented", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //_dashboard.dboard_Load(_newProject.ProjectPath, _newProject.ProjectName, _newProject.ProjectModeIsVideo);
+                    //addUserControl(_dashboard);
                 }
             }
             else {
@@ -70,16 +63,8 @@ namespace Boxinator_V2
                     MessageBox.Show("Folder does not exist", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else {
-                    /*
-                    // Create new project
-                    Project newProject = new Project(_newProject.ProjectName, _newProject.ProjectPath, _newProject.ProjectModeIsVideo);
-                    // Add project to list
-                    ProjectList.AddProject(newProject);
-                    // Add project to listbox
-                    _openProject.AddProjectToListBox(newProject);
-                    // Switch to open project
-                    addUserControl(_openProject);
-                    */
+                    _dashboard.dboard_Load(_newProject.ProjectPath, _newProject.ProjectName, _newProject.ProjectModeIsVideo);
+                    addUserControl(_dashboard);
                 }
             }
         }
