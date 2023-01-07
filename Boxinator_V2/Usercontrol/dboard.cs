@@ -25,6 +25,7 @@ namespace Boxinator_V2.Usercontrol
             pictureBox1.Location = new Point(0, 0);
             trackBar1.Maximum = project.GetImageCount();
             trackBar1.TickFrequency = trackBar1.Maximum / 10;
+            frameLabel.Text = "/ " + trackBar1.Maximum.ToString();
             SetImage(0);
         }
 
@@ -40,7 +41,18 @@ namespace Boxinator_V2.Usercontrol
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e) {
+            frameTextBox.Text = trackBar1.Value.ToString();
             SetImage(trackBar1.Value);
+        }
+
+        private void ManualFrameChange(object sender, EventArgs e) {
+            int value = 0;
+            if (int.TryParse(frameTextBox.Text, out value)) {
+                if (value >= 0 && value <= trackBar1.Maximum) {
+                    trackBar1.Value = value;
+                    SetImage(value);
+                }
+            }
         }
     }
 }

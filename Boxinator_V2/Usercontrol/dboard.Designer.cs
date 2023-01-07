@@ -188,6 +188,7 @@
             this.frameTextBox.Size = new System.Drawing.Size(40, 21);
             this.frameTextBox.TabIndex = 0;
             this.frameTextBox.Text = "0";
+            this.frameTextBox.TextChanged += new System.EventHandler(this.ManualFrameChange);
             // 
             // panel4
             // 
