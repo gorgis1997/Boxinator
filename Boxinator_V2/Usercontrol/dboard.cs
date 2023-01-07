@@ -29,6 +29,7 @@ namespace Boxinator_V2.Usercontrol
         }
 
         private void SetImage(int index) {
+            pictureBox1.Image.Dispose();
             pictureBox1.Image = project.GetImage(index);
         }
 
