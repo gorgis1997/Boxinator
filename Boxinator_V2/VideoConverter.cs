@@ -38,7 +38,8 @@ class VideoConverter {
 
                     progress.Report((int) progressPercentage);
                     status.Report("Frame " + i + " of " + totalFrames.ToString());
-                    timeRemaining.Report("Time remaining: " + TimeSpan.FromSeconds(estimatedTime).ToString(@"hh\:mm\:ss"));
+                    if (i != 0)
+                        timeRemaining.Report("Time remaining: " + TimeSpan.FromSeconds(estimatedTime).ToString(@"hh\:mm\:ss"));
                 }
             
             }
