@@ -52,9 +52,8 @@ namespace Boxinator_V2
                     MessageBox.Show("Video file does not exist", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else {
-                    MessageBox.Show("Not implemented", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //_dashboard.dboard_Load(_newProject.ProjectPath, _newProject.ProjectName, _newProject.ProjectModeIsVideo);
-                    //addUserControl(_dashboard);
+                    _dashboard.dboard_Load(_newProject.ProjectPath, _newProject.ProjectName, _newProject.ProjectModeIsVideo);
+                    addUserControl(_dashboard);
                 }
             }
             else {
