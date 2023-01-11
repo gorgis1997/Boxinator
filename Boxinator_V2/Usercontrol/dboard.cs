@@ -19,6 +19,15 @@ namespace Boxinator_V2.Usercontrol
         
         private Project project;
         public void dboard_Load(string path, string projectName, bool modeVideo) {
+            if (modeVideo) {
+                var converterDialog = new ConverterDialogForm(path);
+                var result = converterDialog.ShowDialog();
+                if (result == DialogResult.Cancel) {
+                    // Do something
+                    return;
+                }
+                path = converterDialog.Output();
+            }
             project = new Project(projectName, path);
             project.InitializeImages();
             pictureBox1.Size = panel2.Size;
@@ -33,6 +42,7 @@ namespace Boxinator_V2.Usercontrol
             pictureBox1.Image.Dispose();
             pictureBox1.Image = project.GetImage(index);
         }
+        
 
 
         private void WindowResized(object sender, EventArgs e) {
