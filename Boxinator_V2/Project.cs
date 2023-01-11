@@ -28,7 +28,11 @@ namespace Boxinator_V2 {
         }
         
         public Bitmap GetImage(int index) {
-            //Bitmap image = new Bitmap(images[index].Get());
+            // Check if index is within range
+            if (index < 0 || index >= images.Length) {
+                Bitmap error = new Bitmap(100, 100);
+                return error;
+            }
             return images[index].Get();
         }
         
