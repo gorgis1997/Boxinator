@@ -43,7 +43,7 @@ namespace Boxinator_V2 {
             finally {
                 _cancellationTokenSource.Dispose();
             }
-           
+            DialogResult = DialogResult.OK;
         }
         
         private bool CreateFolder() {
