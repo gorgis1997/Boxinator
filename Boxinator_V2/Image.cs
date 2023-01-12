@@ -1,18 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace Boxinator_V2 {
     public class Image {
         private string _imagePath;
-        private double[][] annotationBoxes;
+        private List<Rectangle> _boxes;
         
         public Image(string imagePath) {
             _imagePath = imagePath;
-        }
-        
-        public void AddAnnotationBox(double[] box) {
-            //annotationBoxes.Add(box);
+            _boxes = new List<Rectangle>();
         }
 
         public Bitmap Get() {
@@ -25,6 +23,10 @@ namespace Boxinator_V2 {
                 image = Bitmap.FromHicon(SystemIcons.Error.Handle);
             }
             return image;
+        }
+        
+        public List<Rectangle> GetBoxes() {
+            return _boxes;
         }
     }
 }
