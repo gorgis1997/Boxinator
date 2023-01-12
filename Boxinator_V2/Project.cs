@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -34,6 +35,14 @@ namespace Boxinator_V2 {
                 return error;
             }
             return images[index].Get();
+        }
+        
+        public List<Rectangle> GetBoxes(int index) {
+            // Check if index is within range
+            if (index < 0 || index >= images.Length) {
+                return new List<Rectangle>();
+            }
+            return images[index].GetBoxes();
         }
         
         public int GetImageCount() {
