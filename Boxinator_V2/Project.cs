@@ -37,14 +37,15 @@ namespace Boxinator_V2 {
             return images[index].Get();
         }
         
-        public List<Rectangle> GetBoxes(int index) {
+        public List<PercentageRectangle> GetBoxes(int index) {
             // Check if index is within range
             if (index < 0 || index >= images.Length) {
-                return new List<Rectangle>();
+                return new List<PercentageRectangle>();
             }
             return images[index].GetBoxes();
         }
-        
+
+
         public int GetImageCount() {
             return images.Length;
         }

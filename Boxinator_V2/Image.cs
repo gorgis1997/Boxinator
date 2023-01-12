@@ -6,11 +6,11 @@ using System.Windows.Forms;
 namespace Boxinator_V2 {
     public class Image {
         private string _imagePath;
-        private List<Rectangle> _boxes;
+        private List<PercentageRectangle> _boxes;
         
         public Image(string imagePath) {
             _imagePath = imagePath;
-            _boxes = new List<Rectangle>();
+            _boxes = new List<PercentageRectangle>();
         }
 
         public Bitmap Get() {
@@ -25,7 +25,7 @@ namespace Boxinator_V2 {
             return image;
         }
         
-        public List<Rectangle> GetBoxes() {
+        public List<PercentageRectangle> GetBoxes() {
             return _boxes;
         }
     }
