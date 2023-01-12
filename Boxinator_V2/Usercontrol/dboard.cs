@@ -27,6 +27,7 @@ namespace Boxinator_V2.Usercontrol
                     return;
                 }
                 path = converterDialog.Output();
+                converterDialog.Close();
             }
             project = new Project(projectName, path);
             project.InitializeImages();
