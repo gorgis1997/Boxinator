@@ -1,4 +1,6 @@
-﻿namespace Boxinator_V2.Usercontrol
+﻿using System.ComponentModel;
+
+namespace Boxinator_V2.Usercontrol
 {
     partial class dboard
     {

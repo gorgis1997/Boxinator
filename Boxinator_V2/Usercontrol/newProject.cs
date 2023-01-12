@@ -51,6 +51,28 @@ namespace Boxinator_V2.Usercontrol {
                 tb_videopath.Text = openFileDialog1.FileName;
             }
         }
+        
+        private void button2_Click(object sender, EventArgs e) {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog() {
+                InitialDirectory = @"C:\",
+                Title = "Chose category file",
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+
+                DefaultExt = "mp4",
+                Filter = "JSON files (*.JSON)|*.JSON",
+                FilterIndex = 2,
+                RestoreDirectory = true,
+
+                ReadOnlyChecked = true,
+                ShowReadOnly = true,
+            };
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK) {
+                tb_videopath.Text = openFileDialog1.FileName;
+            }
+        }
 
         private void ProjectName_TextChanged(object sender, EventArgs e) {
             _projectName = tb_projectName.Text;
