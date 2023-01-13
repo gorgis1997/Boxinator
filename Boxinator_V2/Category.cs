@@ -12,24 +12,45 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Linq;
+using System.Windows.Forms.VisualStyles;
+using Boxinator_V2;
 
 public class Category
 {
-    public async Task Cat()
+    public class CategoryData
     {
-        await Task.Run(() =>
-        { // Test to manage files with contents
-            string catString = File.ReadAllText("C:/Users/guven/Desktop/categoriesTest.json");
-            string txtPath = "C:/Users/guven/Desktop/kmath.txt";
-            var jsonObj = JsonConvert.DeserializeObject<dynamic>(catString);
-            List<string> categories = new List<string>();
+        public string Category { get; set; }
+    }
+    public void Cat()
+    {
+        Logger.Log("entered CAT");
+        List<CategoryData> categoryList = new List<CategoryData>();
+        OpenFileDialog openFileDialog = new OpenFileDialog();
+        openFileDialog.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+        openFileDialog.FilterIndex = 1;
+        openFileDialog.RestoreDirectory = true;
 
-            foreach (var category in jsonObj)
-            {
-                categories.Add(category); // Adds each category to list
-            }
-            
-            File.WriteAllLines(txtPath, categories); // Writes to text file all categories
-        });
+        if (openFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            string filePath = openFileDialog.FileName;
+            // Read and process the file
+            string json = File.ReadAllText(filePath);
+            // Deserialize the JSON data to a list of CategoryData objects
+            categoryList = JsonConvert.DeserializeObject<List<CategoryData>>(json);
+        }
+        foreach (var item in categoryList)
+        {
+            Logger.Log(item.Category); // Prints each category
+        }
+        /*
+         * Now we can get all data from JSON FILE so next step is to
+         * take all data and write into:
+         * this.comboBox1.Items.AddRange(new object[] {"Car", "Pedestrian"});
+         *  Button2 SelectFile category
+         *  ComboBox1 Category URL/dropdown
+         * _projectCat
+         * tb_categorypath_TextChanged
+         * 
+         */
     }
 }

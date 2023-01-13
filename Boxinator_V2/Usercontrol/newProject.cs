@@ -16,6 +16,7 @@ namespace Boxinator_V2.Usercontrol {
             _projectModeIsVideo = rb_video.Checked;
             _projectPath = "";
             _projectName = "";
+            _projectCat = "";
 
             rb_video.CheckedChanged += ChangeInputMode;
             rb_images.CheckedChanged += ChangeInputMode;
@@ -23,10 +24,12 @@ namespace Boxinator_V2.Usercontrol {
 
         private string _projectName;
         private string _projectPath;
+        private string _projectCat;
         private bool _projectModeIsVideo;
         
         public string ProjectName => _projectName;
         public string ProjectPath => _projectPath;
+        public string _projectCat => _projectCat;
         public bool ProjectModeIsVideo => _projectModeIsVideo;
       
         
@@ -60,7 +63,7 @@ namespace Boxinator_V2.Usercontrol {
                 CheckFileExists = true,
                 CheckPathExists = true,
 
-                DefaultExt = "mp4",
+                DefaultExt = "JSON",
                 Filter = "JSON files (*.JSON)|*.JSON",
                 FilterIndex = 2,
                 RestoreDirectory = true,
@@ -80,7 +83,9 @@ namespace Boxinator_V2.Usercontrol {
         private void tb_videopath_TextChanged(object sender, EventArgs e) {
             _projectPath = tb_videopath.Text;
         }
-
+        private void tb_categorypath_TextChanged(object sender, EventArgs e) {
+            _projectCat = comboBox1.Text;
+        }
         private void tb_folderpath_TextChanged(object sender, EventArgs e) {
             _projectPath = tb_folderpath.Text;
         }

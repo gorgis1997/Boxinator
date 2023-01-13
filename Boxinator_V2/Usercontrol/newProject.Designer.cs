@@ -111,7 +111,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(420, 24);
             this.comboBox1.TabIndex = 10;
-            this.comboBox1.Text = "Traffic_V2";
+            this.comboBox1.TextChanged += new System.EventHandler(this.tb_categorypath_TextChanged);
             // 
             // label3
             // 

@@ -22,6 +22,8 @@ namespace Boxinator_V2
 
         public FormMenu()
         {
+            Category categ = new Category();
+            categ.Cat(); //TEMP
             InitializeComponent();
             CreateSubmitButton();
             _home.Dock = DockStyle.Fill;
