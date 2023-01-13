@@ -22,8 +22,8 @@ namespace Boxinator_V2
 
         public FormMenu()
         {
-            Category categ = new Category();
-            categ.Cat(); //TEMP
+            //Category categ = new Category();
+            //categ.Cat(); //TEMP
             InitializeComponent();
             CreateSubmitButton();
             _home.Dock = DockStyle.Fill;
@@ -46,6 +46,11 @@ namespace Boxinator_V2
         private void SubmitNewProject(object sender, EventArgs e) {
             if (string.IsNullOrEmpty(_newProject.ProjectName) || string.IsNullOrEmpty(_newProject.ProjectPath)) {
                 MessageBox.Show("FILL OUT THE FIELDS YO", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (!System.IO.File.Exists(_newProject.ProjectCat))
+            {
+                MessageBox.Show("You have to submit a valid category file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             // Video mode
             else if (_newProject.ProjectModeIsVideo) {

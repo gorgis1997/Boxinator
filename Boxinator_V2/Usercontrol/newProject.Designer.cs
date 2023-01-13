@@ -167,7 +167,7 @@
             this.tb_videopath.TabIndex = 13;
             this.tb_videopath.TextChanged += new System.EventHandler(this.tb_videopath_TextChanged);
             // 
-            // button2
+            // button2 - Category
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
@@ -289,11 +289,11 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox tb_projectName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        public System.Windows.Forms.ComboBox comboBox1; // category url text
+        private System.Windows.Forms.Button button2; // category button
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_select_video;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tb_videopath;
-        private System.Windows.Forms.Button button2;
     }
 }

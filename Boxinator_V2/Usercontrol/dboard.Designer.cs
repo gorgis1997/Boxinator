@@ -77,12 +77,12 @@ namespace Boxinator_V2.Usercontrol
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {"Car", "Pedestrian", "Traffic Light", "Etc"});
+            this.comboBox1.Items.AddRange(new object[] {""});
             this.comboBox1.Location = new System.Drawing.Point(332, 17);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(94, 21);
             this.comboBox1.TabIndex = 4;
-            this.comboBox1.Text = "Car";
+            this.comboBox1.Text = "Pick category below: ";
             // 
             // categoryLabel
             // 

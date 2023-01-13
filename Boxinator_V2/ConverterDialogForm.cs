@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using Boxinator_V2.Usercontrol;
 
 namespace Boxinator_V2 {
     public partial class ConverterDialogForm : Form {
@@ -27,10 +28,12 @@ namespace Boxinator_V2 {
 
         private async void ConvertVideo() {
             VideoConverter converter = new VideoConverter();
+            //Category category = new Category();
+            //newProject proj = new newProject();
             var progress = new Progress<int>(p => progressBar1.Value = p);
             var status = new Progress<string>(s => lblProgress.Text = s);
             var timeReaming = new Progress<string>(t => label2.Text = t);
-            
+            //category.Cat(proj.comboBox1.Text);
             try {
                 await converter.ConvertAsync(_path, _output, progress, _cancellationTokenSource.Token, status, timeReaming);
             }

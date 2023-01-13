@@ -29,7 +29,7 @@ namespace Boxinator_V2.Usercontrol {
         
         public string ProjectName => _projectName;
         public string ProjectPath => _projectPath;
-        public string _projectCat => _projectCat;
+        public string ProjectCat => _projectCat;
         public bool ProjectModeIsVideo => _projectModeIsVideo;
       
         
@@ -71,9 +71,10 @@ namespace Boxinator_V2.Usercontrol {
                 ReadOnlyChecked = true,
                 ShowReadOnly = true,
             };
-
+            Category category = new Category();
             if (openFileDialog1.ShowDialog() == DialogResult.OK) {
-                tb_videopath.Text = openFileDialog1.FileName;
+                comboBox1.Text = openFileDialog1.FileName;
+                category.Cat(comboBox1.Text);
             }
         }
 
