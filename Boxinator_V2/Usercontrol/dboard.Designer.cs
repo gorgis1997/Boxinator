@@ -77,12 +77,12 @@ namespace Boxinator_V2.Usercontrol
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {""});
+            this.comboBox1.Items.AddRange(new object[] {});
             this.comboBox1.Location = new System.Drawing.Point(332, 17);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(94, 21);
             this.comboBox1.TabIndex = 4;
-            this.comboBox1.Text = "Pick category below: ";
+            this.comboBox1.Text = "Pick Category:";
             // 
             // categoryLabel
             // 
@@ -93,7 +93,7 @@ namespace Boxinator_V2.Usercontrol
             this.categoryLabel.Location = new System.Drawing.Point(263, 17);
             this.categoryLabel.Name = "categoryLabel";
             this.categoryLabel.Padding = new System.Windows.Forms.Padding(4);
-            this.categoryLabel.Size = new System.Drawing.Size(63, 21);
+            this.categoryLabel.Size = new System.Drawing.Size(100, 21);
             this.categoryLabel.TabIndex = 3;
             this.categoryLabel.Text = "Traffic_v2";
             // 
@@ -350,8 +350,8 @@ namespace Boxinator_V2.Usercontrol
         #endregion
 
         private System.Windows.Forms.CheckBox categoryCheckbox;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label categoryLabel;
+        public System.Windows.Forms.ComboBox comboBox1; // categ
+        public System.Windows.Forms.Label categoryLabel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;

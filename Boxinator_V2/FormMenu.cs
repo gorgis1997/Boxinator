@@ -17,7 +17,7 @@ namespace Boxinator_V2
         private readonly dboard _dashboard = new dboard();
         private readonly newProject _newProject = new newProject();
         private readonly openProject _openProject = new openProject();
-        
+
         private Button _submitButton;
 
         public FormMenu()
@@ -59,7 +59,7 @@ namespace Boxinator_V2
                     MessageBox.Show("Video file does not exist", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else {
-                    _dashboard.dboard_Load(_newProject.ProjectPath, _newProject.ProjectName, _newProject.ProjectModeIsVideo);
+                    _dashboard.dboard_Load(_newProject.ProjectCat, _newProject.ProjectPath, _newProject.ProjectName, _newProject.ProjectModeIsVideo);
                     addUserControl(_dashboard);
                 }
             }
@@ -69,7 +69,7 @@ namespace Boxinator_V2
                     MessageBox.Show("Folder does not exist", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else {
-                    _dashboard.dboard_Load(_newProject.ProjectPath, _newProject.ProjectName, _newProject.ProjectModeIsVideo);
+                    _dashboard.dboard_Load(_newProject.ProjectCat, _newProject.ProjectPath, _newProject.ProjectName, _newProject.ProjectModeIsVideo);
                     addUserControl(_dashboard);
                 }
             }

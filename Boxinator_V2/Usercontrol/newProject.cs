@@ -74,7 +74,6 @@ namespace Boxinator_V2.Usercontrol {
             Category category = new Category();
             if (openFileDialog1.ShowDialog() == DialogResult.OK) {
                 comboBox1.Text = openFileDialog1.FileName;
-                category.Cat(comboBox1.Text);
             }
         }
 
