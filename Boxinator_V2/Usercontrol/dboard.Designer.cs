@@ -126,7 +126,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(856, 402);
             this.panel2.TabIndex = 7;
-            this.panel2.SizeChanged += new System.EventHandler(this.panel2_SizeChanged);
             this.panel2.Resize += new System.EventHandler(this.WindowResized);
             // 
             // pictureBox1

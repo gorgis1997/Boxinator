@@ -48,13 +48,13 @@ namespace Boxinator_V2.Usercontrol
             Logger.Log("Dashboard loaded");
             SetImage(0);
         }
-        private float _zoom = 1f;
         private Size _originalSize;
 
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
             float zoom = Math.Min((float)pictureBox1.Width / _originalSize.Width, (float)pictureBox1.Height / _originalSize.Height);
             pictureBox1.ClientSize = new Size((int)(_originalSize.Width * zoom), (int)(_originalSize.Height * zoom));
+            pictureBox1.Location = new Point((panel2.Width - pictureBox1.Width) / 2, (panel2.Height - pictureBox1.Height) / 2);
         }
         private void SetImage(int index) {
             pictureBox1.Image.Dispose();
@@ -167,12 +167,6 @@ namespace Boxinator_V2.Usercontrol
             Logger.LogDebug("pictureBox1 invalidated");
             Logger.LogDebug("Mouse move at " + e.Location.ToString());
             Logger.LogDebug("pictureBox1_MouseMove event finished execution");
-        }
-        
-        private void panel2_SizeChanged(object sender, EventArgs e) {
-            float zoom = Math.Min((float)pictureBox1.Width / _originalSize.Width, (float)pictureBox1.Height / _originalSize.Height);
-            pictureBox1.ClientSize = new Size((int)(_originalSize.Width * zoom), (int)(_originalSize.Height * zoom));
-            pictureBox1.Location = new Point((panel2.Width - pictureBox1.Width) / 2, (panel2.Height - pictureBox1.Height) / 2);
         }
     }
 }
