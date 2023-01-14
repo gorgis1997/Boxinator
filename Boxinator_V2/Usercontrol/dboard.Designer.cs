@@ -47,11 +47,13 @@
             this.playButton = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.cbSelectionMode = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -200,6 +202,7 @@
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
+            this.panel4.Controls.Add(this.cbSelectionMode);
             this.panel4.Location = new System.Drawing.Point(123, 3);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(730, 39);
@@ -295,6 +298,15 @@
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
+            // cbSelectionMode
+            // 
+            this.cbSelectionMode.Location = new System.Drawing.Point(7, 8);
+            this.cbSelectionMode.Name = "cbSelectionMode";
+            this.cbSelectionMode.Size = new System.Drawing.Size(104, 24);
+            this.cbSelectionMode.TabIndex = 0;
+            this.cbSelectionMode.Text = "Selection Mode";
+            this.cbSelectionMode.UseVisualStyleBackColor = true;
+            // 
             // dboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,6 +325,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
@@ -320,6 +333,8 @@
             ((System.ComponentModel.ISupportInitialize) (this.trackBar1)).EndInit();
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.CheckBox cbSelectionMode;
 
         #endregion
 

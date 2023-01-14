@@ -56,6 +56,7 @@ namespace Boxinator_V2.Usercontrol
             pictureBox1.ClientSize = new Size((int)(_originalSize.Width * zoom), (int)(_originalSize.Height * zoom));
             pictureBox1.Location = new Point((panel2.Width - pictureBox1.Width) / 2, (panel2.Height - pictureBox1.Height) / 2);
         }
+        
         private void SetImage(int index) {
             pictureBox1.Image.Dispose();
             pictureBox1.Image = _project.GetImage(index);
@@ -85,86 +86,109 @@ namespace Boxinator_V2.Usercontrol
         }
         
         private List<PercentageRectangle> _boxes = new List<PercentageRectangle>();
-        private PercentageRectangle currentBox = new PercentageRectangle(0, 0, 0, 0);
+        private PercentageRectangle _selectedBox = new PercentageRectangle(0, 0, 0, 0);
+        private PercentageRectangle _highlightedBox = new PercentageRectangle(0, 0, 0, 0);
         private Point startPoint;
-        private bool isDragging = false;
+        private bool _isMouseDown = false;
 
         private void PicturePaint(object sender, PaintEventArgs e) {
             if (_boxes == null) return;
             
             #if DEBUG
-            Logger.Log("Drawing boxes: " + _boxes.Count.ToString() + "\n" + "Current box: " + currentBox.ToString());
+            Logger.Log("Drawing boxes: " + _boxes.Count.ToString() + "\n" + "Current box: " + _selectedBox.ToString());
             foreach (var box in _boxes) {
                 Logger.Log(box.ToString());
             }
             #endif
             
-            if (_boxes != null) {
-                // Draw all boxes
-                foreach (var box in _boxes) {
-                    var rectangle = box.GetRectangle(pictureBox1.Size);
-                    e.Graphics.DrawRectangle(Pens.Red, rectangle);
+            // Draw all boxes in list
+            foreach (var box in _boxes)
+            {
+                var rectangle = box.GetRectangle(pictureBox1.Size);
+                e.Graphics.DrawRectangle(Pens.Red, rectangle);
+            }
+
+            // Draw selected box
+            e.Graphics.DrawRectangle(Pens.Green, _selectedBox.GetRectangle(pictureBox1.Size));
+            
+            // Fill highlighted box
+            if (_highlightedBox != null) {
+                using (var brush = new SolidBrush(Color.FromArgb(50, Color.Red))) {
+                    e.Graphics.FillRectangle(brush, _highlightedBox.GetRectangle(pictureBox1.Size));
                 }
             }
-            e.Graphics.DrawRectangle(Pens.Green, currentBox.GetRectangle(pictureBox1.Size));
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e) {
             Logger.LogDebug("pictureBox1_MouseDown event triggered");
             if (e.Button != MouseButtons.Left) return;
-            startPoint = e.Location;
-            currentBox = new PercentageRectangle((float)e.X / pictureBox1.Width, (float)e.Y / pictureBox1.Height, 0, 0);
-            isDragging = true;
-            pictureBox1.Invalidate();
-            
+            if (cbSelectionMode.Checked) {
+                _selectedBox = _boxes.FirstOrDefault(box => box.GetRectangle(pictureBox1.Size).Contains(e.Location));
+            }
+            else {
+                startPoint = e.Location;
+                _selectedBox = new PercentageRectangle((float)e.X / pictureBox1.Width, (float)e.Y / pictureBox1.Height, 0, 0);
+                _isMouseDown = true;
+                pictureBox1.Invalidate();
+            }
+
             Logger.LogDebug("Mouse down at " + e.Location.ToString());
-            Logger.LogDebug("Current box: " + currentBox.ToString());
+            Logger.LogDebug("Current box: " + _selectedBox.ToString());
             Logger.LogDebug("Started dragging");
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e) {
             Logger.LogDebug("pictureBox1_MouseUp event triggered");
-            if (isDragging) {
-                currentBox.Width = (float)(e.X - startPoint.X) / pictureBox1.Width;
-                currentBox.Height = (float)(e.Y - startPoint.Y) / pictureBox1.Height;
-                if (currentBox.Width < 0) {
-                    currentBox.Width = -currentBox.Width;
-                    currentBox.X = (float)e.X / pictureBox1.Width;
+            if (_isMouseDown) {
+                _selectedBox.Width = (float)(e.X - startPoint.X) / pictureBox1.Width;
+                _selectedBox.Height = (float)(e.Y - startPoint.Y) / pictureBox1.Height;
+                if (_selectedBox.Width < 0) {
+                    _selectedBox.Width = -_selectedBox.Width;
+                    _selectedBox.X = (float)e.X / pictureBox1.Width;
                 }
 
-                if (currentBox.Height < 0) {
-                    currentBox.Height = -currentBox.Height;
-                    currentBox.Y = (float)e.Y / pictureBox1.Height;
+                if (_selectedBox.Height < 0) {
+                    _selectedBox.Height = -_selectedBox.Height;
+                    _selectedBox.Y = (float)e.Y / pictureBox1.Height;
                 }
-                Logger.LogDebug("Current box before adding to list: " + currentBox.ToString());
-                _boxes.Add(currentBox);
-                _project.PermeateNewBox(trackBar1.Value, currentBox);
-                Logger.Log("Added box " + currentBox.ToString() + " to list, total boxes: " + _boxes.Count);
+                Logger.LogDebug("Current box before adding to list: " + _selectedBox.ToString());
+                _boxes.Add(_selectedBox);
+                _project.PermeateNewBox(trackBar1.Value, _selectedBox);
+                Logger.Log("Added box " + _selectedBox.ToString() + " to list, total boxes: " + _boxes.Count);
             }
-            isDragging = false;
+            _isMouseDown = false;
             Logger.LogDebug("Boxes: " + _boxes.Count.ToString());
-            currentBox = new PercentageRectangle(0, 0, 0, 0);
+            _selectedBox = new PercentageRectangle(0, 0, 0, 0);
             Logger.LogDebug("pictureBox1_MouseUp event finished execution");
         }
 
     
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e) {
+            if (_boxes == null) return;
             Logger.LogDebug("pictureBox1_MouseMove event triggered");
-            if (!isDragging) return;
-            currentBox.Width = (float)(e.X - startPoint.X) / pictureBox1.Width;
-            currentBox.Height = (float)(e.Y - startPoint.Y) / pictureBox1.Height;
-            if (currentBox.Width < 0) {
-                currentBox.Width = -currentBox.Width;
-                currentBox.X = (float)e.X / pictureBox1.Width;
+            if (cbSelectionMode.Checked) {
+                // Check if the mouse is over any of the boxes
+                _highlightedBox = _boxes.FirstOrDefault(box => box.GetRectangle(pictureBox1.Size).Contains(e.Location));
+                pictureBox1.Invalidate();
             }
-            if (currentBox.Height < 0) {
-                currentBox.Height = -currentBox.Height;
-                currentBox.Y = (float)e.Y / pictureBox1.Height;
+            else {
+                if (!_isMouseDown) return;
+                _selectedBox.Width = (float)(e.X - startPoint.X) / pictureBox1.Width;
+                _selectedBox.Height = (float)(e.Y - startPoint.Y) / pictureBox1.Height;
+                if (_selectedBox.Width < 0) {
+                    _selectedBox.Width = -_selectedBox.Width;
+                    _selectedBox.X = (float)e.X / pictureBox1.Width;
+                }
+                if (_selectedBox.Height < 0) {
+                    _selectedBox.Height = -_selectedBox.Height;
+                    _selectedBox.Y = (float)e.Y / pictureBox1.Height;
+                }
+                Logger.LogDebug("Current box: " + _selectedBox.ToString());
+                pictureBox1.Invalidate();
+                Logger.LogDebug("pictureBox1 invalidated");
             }
-            Logger.LogDebug("Current box: " + currentBox.ToString());
-            pictureBox1.Invalidate();
-            Logger.LogDebug("pictureBox1 invalidated");
+
             Logger.LogDebug("Mouse move at " + e.Location.ToString());
             Logger.LogDebug("pictureBox1_MouseMove event finished execution");
         }
