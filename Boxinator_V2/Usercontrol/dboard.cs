@@ -23,6 +23,10 @@ namespace Boxinator_V2.Usercontrol
         }
 
         private Project _project;
+        // Create a new Timer object
+        private Timer _timer;
+
+            
 
         public void dboard_Load(string path, string projectName, bool modeVideo) {
             Logger.Log("Dashboard loading " + "\n" + "Path: " + path + "\n" + "Project Name: " + projectName + "\n" + "Mode: " + (modeVideo? "Video" : "Image"));
@@ -48,6 +52,10 @@ namespace Boxinator_V2.Usercontrol
             this.SizeChanged += new EventHandler(Form1_SizeChanged);
             Logger.Log("Dashboard loaded");
             SetImage(0);
+
+            _timer = new Timer();
+            _timer.Interval = 33;
+            _timer.Tick += new EventHandler(TimerEventProcessor);
         }
         private Size _originalSize;
 
@@ -308,6 +316,15 @@ namespace Boxinator_V2.Usercontrol
 
             pictureBox1.Cursor = cursor;
             pictureBox1.Invalidate();
+        }
+        
+        private void TimerEventProcessor(Object myObject, EventArgs myEventArgs) {
+            SetImage(trackBar1.Value);
+            trackBar1.Value += 1;
+        }
+
+        private void Play(object sender, EventArgs e) {
+            _timer.Start();
         }
     }
 }

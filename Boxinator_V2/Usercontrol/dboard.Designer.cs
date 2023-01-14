@@ -285,6 +285,7 @@
             this.playButton.Size = new System.Drawing.Size(46, 33);
             this.playButton.TabIndex = 0;
             this.playButton.UseVisualStyleBackColor = false;
+            this.playButton.Click += new System.EventHandler(this.Play);
             // 
             // panel6
             // 
