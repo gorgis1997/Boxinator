@@ -154,7 +154,7 @@ namespace Boxinator_V2.Usercontrol
             if (cbSelectionMode.Checked) {
                 if (_selectedBox != PercentageRectangle.Empty && _movingBox) {
                     _movingBox = false;
-                    _project.PermeateMovedBox(trackBar1.Value, _selectedBox.Id, _selectedBox.X, _selectedBox.Y);
+                    _project.PermeateMovedBox(trackBar1.Value, _selectedBox.Id, _selectedBox.X, _selectedBox.Y, _selectedBox.Width, _selectedBox.Height);
                     pictureBox1.Invalidate();
                 }
             }
@@ -198,17 +198,7 @@ namespace Boxinator_V2.Usercontrol
                     break;
                 }
                 
-                if (_leftMouseButtonDown && _selectedBox != PercentageRectangle.Empty)
-                {
-                    _movingBox = true;
-                    // If the left mouse button is down and a box is selected, move the selected box
-                    var offsetX = e.X - _startPoint.X;
-                    var offsetY = e.Y - _startPoint.Y;
-                    _selectedBox.X += offsetX / (float)pictureBox1.Width;
-                    _selectedBox.Y += offsetY / (float)pictureBox1.Height;
-                    _startPoint = e.Location;
-                }
-                pictureBox1.Invalidate();
+                ResizeBox(e);
             }
             else {
                 if (!_leftMouseButtonDown) return;
@@ -243,6 +233,80 @@ namespace Boxinator_V2.Usercontrol
             
             if (_selectedBox == _highlightedBox) _highlightedBox = PercentageRectangle.Empty;
             _selectedBox = PercentageRectangle.Empty;
+            pictureBox1.Invalidate();
+        }
+
+        private void ResizeBox(MouseEventArgs e) {
+            var rect = _highlightedBox.GetRectangle(pictureBox1.Size);
+            var resizeDist = 8;
+            var cursor = Cursors.Default;
+
+            if (Math.Abs(e.X - rect.Left) <= resizeDist)
+            {
+                cursor = Cursors.SizeWE;
+                if (_leftMouseButtonDown)
+                {
+                    if (Math.Abs(e.Y - rect.Top) > resizeDist && Math.Abs(e.Y - rect.Bottom) > resizeDist)
+                    {
+                        var newX = (float)e.X / pictureBox1.Width;
+                        _selectedBox.Width += _selectedBox.X - newX;
+                        _selectedBox.X = newX;
+                    }
+                }
+            }
+            else if (Math.Abs(e.X - rect.Right) <= resizeDist)
+            {
+                cursor = Cursors.SizeWE;
+                if (_leftMouseButtonDown)
+                {
+                    if (Math.Abs(e.Y - rect.Top) > resizeDist && Math.Abs(e.Y - rect.Bottom) > resizeDist)
+                    {
+                        var newWidth = (float)(e.X - rect.Left) / pictureBox1.Width;
+                        _selectedBox.Width = newWidth;
+                    }
+                }
+            }
+            else if (Math.Abs(e.Y - rect.Top) <= resizeDist)
+            {
+                cursor = Cursors.SizeNS;
+                if (_leftMouseButtonDown)
+                {
+                    if (Math.Abs(e.X - rect.Left) > resizeDist && Math.Abs(e.X - rect.Right) > resizeDist)
+                    {
+                        var newY = (float)e.Y / pictureBox1.Height;
+                        _selectedBox.Height += _selectedBox.Y - newY;
+                        _selectedBox.Y = newY;
+                    }
+                }
+            }
+            else if (Math.Abs(e.Y - rect.Bottom) <= resizeDist)
+            {
+                cursor = Cursors.SizeNS;
+                if (_leftMouseButtonDown)
+                {
+                    if (Math.Abs(e.X - rect.Left) > resizeDist && Math.Abs(e.X - rect.Right) > resizeDist)
+                    {
+                        var newHeight = (float)(e.Y - rect.Top) / pictureBox1.Height;
+                        _selectedBox.Height = newHeight;
+                    }
+                }
+            }
+
+            else if (rect.Contains(e.Location))
+            {
+                cursor = Cursors.SizeAll;
+                if (_leftMouseButtonDown)
+                {
+                    _movingBox = true;
+                    var offsetX = e.X - _startPoint.X;
+                    var offsetY = e.Y - _startPoint.Y;
+                    _selectedBox.X += offsetX / (float)pictureBox1.Width;
+                    _selectedBox.Y += offsetY / (float)pictureBox1.Height;
+                    _startPoint = e.Location;
+                }
+            }
+
+            pictureBox1.Cursor = cursor;
             pictureBox1.Invalidate();
         }
     }
