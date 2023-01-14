@@ -54,15 +54,23 @@ namespace Boxinator_V2 {
             // Loop through all images and add the box to them
             // Start from index to end of images
             for (int i = index; i < images.Length; i++) {
-                images[i].AddBox(box);
+                images[i].AddBox(box.Copy());
             }
         }
         
-        public void PermeateDeleteBox(int index, PercentageRectangle box) {
+        public void PermeateDeleteBox(int index, int id) {
             // Loop through all images and delete the box from them
             // Start from index to end of images
             for (int i = index; i < images.Length; i++) {
-                images[i].DeleteBox(box);
+                images[i].DeleteBox(id);
+            }
+        }
+        
+        public void PermeateMovedBox(int index, int id, float x, float y) {
+            // Loop through all images and move the box in them
+            // Start from index to end of images
+            for (int i = index; i < images.Length; i++) {
+                images[i].MoveBox(id, x, y);
             }
         }
     }

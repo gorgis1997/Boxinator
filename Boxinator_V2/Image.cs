@@ -33,8 +33,21 @@ namespace Boxinator_V2 {
             _boxes.Add(box);
         }
         
-        public void DeleteBox(PercentageRectangle box) {
-            _boxes.Remove(box);
+        public void DeleteBox(int id) {
+            foreach (var box in _boxes) {
+                if (box.Id != id) continue;
+                _boxes.Remove(box);
+                break;
+            }
+        }
+        
+        public void MoveBox(int id, float x, float y) {
+            foreach (var box in _boxes) {
+                if (box.Id != id) continue;
+                box.X = x;
+                box.Y = y;
+                break;
+            }
         }
     }
 }
