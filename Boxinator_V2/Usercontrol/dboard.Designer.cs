@@ -40,8 +40,6 @@
             this.frameLabel = new System.Windows.Forms.Label();
             this.frameTextBox = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
@@ -54,7 +52,6 @@
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -135,7 +132,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.Image = ((System.Drawing.Image) (resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.ErrorImage = global::Boxinator_V2.Properties.Resources.BOXINATOR_v3;
+            this.pictureBox1.Image = global::Boxinator_V2.Properties.Resources.BOXINATOR_v3;
+            this.pictureBox1.InitialImage = global::Boxinator_V2.Properties.Resources.BOXINATOR_v3;
             this.pictureBox1.Location = new System.Drawing.Point(207, 119);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(431, 166);
@@ -202,28 +201,10 @@
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.label2);
             this.panel4.Location = new System.Drawing.Point(123, 3);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(730, 39);
             this.panel4.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(189, 7);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(385, 23);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "label3";
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(11, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(137, 23);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "label2";
             // 
             // tableLayoutPanel2
             // 
@@ -333,7 +314,6 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
@@ -341,9 +321,6 @@
             ((System.ComponentModel.ISupportInitialize) (this.trackBar1)).EndInit();
             this.ResumeLayout(false);
         }
-
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
 
         #endregion
 

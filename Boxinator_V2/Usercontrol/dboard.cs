@@ -15,8 +15,12 @@ namespace Boxinator_V2.Usercontrol
         public dboard()
         {
             InitializeComponent();
+            Logger.LogDebug("Dashboard loaded");
+            Logger.LogDebug("picturebox width: " + pictureBox1.Width.ToString() + "x" + pictureBox1.Height.ToString());
+            Logger.LogDebug("picturebox location: " + pictureBox1.Location.X.ToString() + "x" + pictureBox1.Location.Y.ToString());
+            pictureBox1.Image = (Bitmap) Properties.Resources.ResourceManager.GetObject("BOXINATOR_v3");
         }
-        
+
         private Project _project;
 
         public void dboard_Load(string path, string projectName, bool modeVideo) {
@@ -106,6 +110,7 @@ namespace Boxinator_V2.Usercontrol
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e) {
+            Logger.LogDebug("pictureBox1_MouseDown event triggered");
             if (e.Button != MouseButtons.Left) return;
             startPoint = e.Location;
             currentBox = new PercentageRectangle((float)e.X / pictureBox1.Width, (float)e.Y / pictureBox1.Height, 0, 0);
@@ -118,26 +123,52 @@ namespace Boxinator_V2.Usercontrol
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e) {
+            Logger.LogDebug("pictureBox1_MouseUp event triggered");
             if (isDragging) {
-                currentBox.Width = Math.Abs((float)e.X - startPoint.X) / pictureBox1.Width;
-                currentBox.Height = Math.Abs((float)e.Y - startPoint.Y) / pictureBox1.Height;
+                currentBox.Width = (float)(e.X - startPoint.X) / pictureBox1.Width;
+                currentBox.Height = (float)(e.Y - startPoint.Y) / pictureBox1.Height;
+                if (currentBox.Width < 0) {
+                    currentBox.Width = -currentBox.Width;
+                    currentBox.X = (float)e.X / pictureBox1.Width;
+                }
+
+                if (currentBox.Height < 0) {
+                    currentBox.Height = -currentBox.Height;
+                    currentBox.Y = (float)e.Y / pictureBox1.Height;
+                }
+                Logger.LogDebug("Current box before adding to list: " + currentBox.ToString());
                 _boxes.Add(currentBox);
+                _project.PermeateNewBox(trackBar1.Value, currentBox);
+                Logger.Log("Added box " + currentBox.ToString() + " to list, total boxes: " + _boxes.Count);
             }
             isDragging = false;
-            currentBox = new PercentageRectangle(0, 0, 0, 0);
             Logger.LogDebug("Boxes: " + _boxes.Count.ToString());
-            Logger.Log("Added box " + currentBox.ToString());
+            currentBox = new PercentageRectangle(0, 0, 0, 0);
+            Logger.LogDebug("pictureBox1_MouseUp event finished execution");
         }
+
     
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e) {
+            Logger.LogDebug("pictureBox1_MouseMove event triggered");
             if (!isDragging) return;
-            currentBox.Width = Math.Abs((float)e.X - startPoint.X) / pictureBox1.Width;
-            currentBox.Height = Math.Abs((float)e.Y - startPoint.Y) / pictureBox1.Height;
+            currentBox.Width = (float)(e.X - startPoint.X) / pictureBox1.Width;
+            currentBox.Height = (float)(e.Y - startPoint.Y) / pictureBox1.Height;
+            if (currentBox.Width < 0) {
+                currentBox.Width = -currentBox.Width;
+                currentBox.X = (float)e.X / pictureBox1.Width;
+            }
+            if (currentBox.Height < 0) {
+                currentBox.Height = -currentBox.Height;
+                currentBox.Y = (float)e.Y / pictureBox1.Height;
+            }
+            Logger.LogDebug("Current box: " + currentBox.ToString());
             pictureBox1.Invalidate();
+            Logger.LogDebug("pictureBox1 invalidated");
             Logger.LogDebug("Mouse move at " + e.Location.ToString());
+            Logger.LogDebug("pictureBox1_MouseMove event finished execution");
         }
-
+        
         private void panel2_SizeChanged(object sender, EventArgs e) {
             float zoom = Math.Min((float)pictureBox1.Width / _originalSize.Width, (float)pictureBox1.Height / _originalSize.Height);
             pictureBox1.ClientSize = new Size((int)(_originalSize.Width * zoom), (int)(_originalSize.Height * zoom));
