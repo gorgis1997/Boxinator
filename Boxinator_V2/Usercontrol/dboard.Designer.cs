@@ -350,10 +350,10 @@ namespace Boxinator_V2.Usercontrol
         #endregion
 
         private System.Windows.Forms.CheckBox categoryCheckbox;
-        public System.Windows.Forms.ComboBox comboBox1; // categ
+        public System.Windows.Forms.ComboBox comboBox1; // category
         public System.Windows.Forms.Label categoryLabel;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label1; // Project name
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel3;

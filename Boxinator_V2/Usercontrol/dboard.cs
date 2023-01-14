@@ -30,8 +30,10 @@ namespace Boxinator_V2.Usercontrol
                 }
                 path = converterDialog.Output();
             }
+            
             Category category = new Category();
             category.Cat(catPath, comboBox1, categoryLabel);
+            label1.Text = "Dashboard - " + projectName;
             //comboBox1.Items.AddRange();
             _project = new Project(projectName, path);
             _project.InitializeImages();
