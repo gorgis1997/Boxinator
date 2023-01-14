@@ -9,13 +9,16 @@ namespace Boxinator_V2 {
         
         public Size ImageSize {get;set;}
         
-        public static readonly PercentageRectangle Empty = new PercentageRectangle(0,0,0,0);
+        public int Id {get;set;}
         
-        public PercentageRectangle(float x, float y, float width, float height) {
+        public static readonly PercentageRectangle Empty = new PercentageRectangle(0,0,0,0, -1);
+        
+        public PercentageRectangle(float x, float y, float width, float height, int id) {
             X = x;
             Y = y;
             Width = width;
             Height = height;
+            Id = id;
         }
 
         public Rectangle GetRectangle(Size imageSize) {
@@ -30,8 +33,12 @@ namespace Boxinator_V2 {
         
         // ToString
         public override string ToString() {
-            return string.Format("X: {0}, Y: {1}, Width: {2}, Height: {3}", (object)X, (object)Y, (object)Width, (object)Height);
+            return string.Format("X: {0}, Y: {1}, Width: {2}, Height: {3}, ID: {4}", (object)X, (object)Y, (object)Width, (object)Height, (object)Id);
         }
         
+        // Copy
+        public PercentageRectangle Copy() {
+            return new PercentageRectangle(X, Y, Width, Height, Id);
+        }
     }
 }
