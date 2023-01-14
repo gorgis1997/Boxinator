@@ -28,5 +28,9 @@ namespace Boxinator_V2 {
         public List<PercentageRectangle> GetBoxes() {
             return _boxes;
         }
+        
+        public void AddBox(PercentageRectangle box) {
+            _boxes.Add(box);
+        }
     }
 }
