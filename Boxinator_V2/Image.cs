@@ -32,5 +32,9 @@ namespace Boxinator_V2 {
         public void AddBox(PercentageRectangle box) {
             _boxes.Add(box);
         }
+        
+        public void DeleteBox(PercentageRectangle box) {
+            _boxes.Remove(box);
+        }
     }
 }

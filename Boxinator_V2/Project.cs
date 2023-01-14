@@ -57,5 +57,13 @@ namespace Boxinator_V2 {
                 images[i].AddBox(box);
             }
         }
+        
+        public void PermeateDeleteBox(int index, PercentageRectangle box) {
+            // Loop through all images and delete the box from them
+            // Start from index to end of images
+            for (int i = index; i < images.Length; i++) {
+                images[i].DeleteBox(box);
+            }
+        }
     }
 }
