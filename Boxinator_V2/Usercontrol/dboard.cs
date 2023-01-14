@@ -62,6 +62,9 @@ namespace Boxinator_V2.Usercontrol
             pictureBox1.Image = _project.GetImage(index);
             _originalSize = pictureBox1.Image.Size;
             _boxes = _project.GetBoxes(index);
+            pictureBox1.Invalidate();
+            _selectedBox = PercentageRectangle.Empty;
+            _highlightedBox = PercentageRectangle.Empty;
             Logger.Log("Image set to " + index.ToString());
         }
         
@@ -76,6 +79,7 @@ namespace Boxinator_V2.Usercontrol
         }
 
         private void ManualFrameChange(object sender, EventArgs e) {
+            /*
             int value = 0;
             if (int.TryParse(frameTextBox.Text, out value)) {
                 if (value >= 0 && value <= trackBar1.Maximum) {
@@ -83,13 +87,14 @@ namespace Boxinator_V2.Usercontrol
                     SetImage(value);
                 }
             }
+            */
         }
         
         private List<PercentageRectangle> _boxes = new List<PercentageRectangle>();
         private PercentageRectangle _selectedBox = new PercentageRectangle(0, 0, 0, 0);
         private PercentageRectangle _highlightedBox = new PercentageRectangle(0, 0, 0, 0);
         private Point startPoint;
-        private bool _isMouseDown = false;
+        private bool isDragging = false;
 
         private void PicturePaint(object sender, PaintEventArgs e) {
             if (_boxes == null) return;
@@ -111,10 +116,10 @@ namespace Boxinator_V2.Usercontrol
             // Draw selected box
             e.Graphics.DrawRectangle(Pens.Green, _selectedBox.GetRectangle(pictureBox1.Size));
             
-            // Fill highlighted box
-            if (_highlightedBox != null) {
+            if(cbSelectionMode.Checked) {
                 using (var brush = new SolidBrush(Color.FromArgb(50, Color.Red))) {
                     e.Graphics.FillRectangle(brush, _highlightedBox.GetRectangle(pictureBox1.Size));
+                    e.Graphics.FillRectangle(brush, _selectedBox.GetRectangle(pictureBox1.Size));
                 }
             }
         }
@@ -123,12 +128,13 @@ namespace Boxinator_V2.Usercontrol
             Logger.LogDebug("pictureBox1_MouseDown event triggered");
             if (e.Button != MouseButtons.Left) return;
             if (cbSelectionMode.Checked) {
-                _selectedBox = _boxes.FirstOrDefault(box => box.GetRectangle(pictureBox1.Size).Contains(e.Location));
+                if (_highlightedBox != PercentageRectangle.Empty)
+                    _selectedBox = _highlightedBox;
             }
             else {
                 startPoint = e.Location;
                 _selectedBox = new PercentageRectangle((float)e.X / pictureBox1.Width, (float)e.Y / pictureBox1.Height, 0, 0);
-                _isMouseDown = true;
+                isDragging = true;
                 pictureBox1.Invalidate();
             }
 
@@ -139,26 +145,34 @@ namespace Boxinator_V2.Usercontrol
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e) {
             Logger.LogDebug("pictureBox1_MouseUp event triggered");
-            if (_isMouseDown) {
-                _selectedBox.Width = (float)(e.X - startPoint.X) / pictureBox1.Width;
-                _selectedBox.Height = (float)(e.Y - startPoint.Y) / pictureBox1.Height;
-                if (_selectedBox.Width < 0) {
-                    _selectedBox.Width = -_selectedBox.Width;
-                    _selectedBox.X = (float)e.X / pictureBox1.Width;
-                }
+            if (e.Button != MouseButtons.Left) return;
 
-                if (_selectedBox.Height < 0) {
-                    _selectedBox.Height = -_selectedBox.Height;
-                    _selectedBox.Y = (float)e.Y / pictureBox1.Height;
-                }
-                Logger.LogDebug("Current box before adding to list: " + _selectedBox.ToString());
-                _boxes.Add(_selectedBox);
-                _project.PermeateNewBox(trackBar1.Value, _selectedBox);
-                Logger.Log("Added box " + _selectedBox.ToString() + " to list, total boxes: " + _boxes.Count);
+            if (cbSelectionMode.Checked) {
+                
             }
-            _isMouseDown = false;
-            Logger.LogDebug("Boxes: " + _boxes.Count.ToString());
-            _selectedBox = new PercentageRectangle(0, 0, 0, 0);
+            else {
+                if (isDragging) {
+                    _selectedBox.Width = (float)(e.X - startPoint.X) / pictureBox1.Width;
+                    _selectedBox.Height = (float)(e.Y - startPoint.Y) / pictureBox1.Height;
+                    if (_selectedBox.Width < 0) {
+                        _selectedBox.Width = -_selectedBox.Width;
+                        _selectedBox.X = (float)e.X / pictureBox1.Width;
+                    }
+
+                    if (_selectedBox.Height < 0) {
+                        _selectedBox.Height = -_selectedBox.Height;
+                        _selectedBox.Y = (float)e.Y / pictureBox1.Height;
+                    }
+                    Logger.LogDebug("Current box before adding to list: " + _selectedBox.ToString());
+                    _boxes.Add(_selectedBox);
+                    _project.PermeateNewBox(trackBar1.Value+1, _selectedBox);
+                    Logger.Log("Added box " + _selectedBox.ToString() + " to list, total boxes: " + _boxes.Count);
+                }
+                isDragging = false;
+                Logger.LogDebug("Boxes: " + _boxes.Count.ToString());
+                _selectedBox = new PercentageRectangle(0, 0, 0, 0);
+            }
+
             Logger.LogDebug("pictureBox1_MouseUp event finished execution");
         }
 
@@ -166,14 +180,21 @@ namespace Boxinator_V2.Usercontrol
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e) {
             if (_boxes == null) return;
+            
             Logger.LogDebug("pictureBox1_MouseMove event triggered");
             if (cbSelectionMode.Checked) {
-                // Check if the mouse is over any of the boxes
-                _highlightedBox = _boxes.FirstOrDefault(box => box.GetRectangle(pictureBox1.Size).Contains(e.Location));
+                _highlightedBox = PercentageRectangle.Empty;
+                
+                foreach (var box in _boxes) {
+                    if (!box.GetRectangle(pictureBox1.Size).Contains(e.Location)) continue;
+                    _highlightedBox = box;
+                    break;
+                }
+                
                 pictureBox1.Invalidate();
             }
             else {
-                if (!_isMouseDown) return;
+                if (!isDragging) return;
                 _selectedBox.Width = (float)(e.X - startPoint.X) / pictureBox1.Width;
                 _selectedBox.Height = (float)(e.Y - startPoint.Y) / pictureBox1.Height;
                 if (_selectedBox.Width < 0) {
@@ -191,6 +212,20 @@ namespace Boxinator_V2.Usercontrol
 
             Logger.LogDebug("Mouse move at " + e.Location.ToString());
             Logger.LogDebug("pictureBox1_MouseMove event finished execution");
+        }
+        
+        public void DeleteSelected() {
+            Logger.LogDebug("Delete event triggered");
+            Logger.LogDebug("Selected box: " + _selectedBox.ToString());
+            Logger.LogDebug("Is dragging: " + isDragging.ToString());
+            if (_selectedBox == PercentageRectangle.Empty || isDragging) return;
+            // Delete the selected box when the delete key is pressed
+            _boxes.Remove(_selectedBox);
+            _project.PermeateDeleteBox(trackBar1.Value+1, _selectedBox);
+            
+            if (_selectedBox == _highlightedBox) _highlightedBox = PercentageRectangle.Empty;
+            _selectedBox = PercentageRectangle.Empty;
+            pictureBox1.Invalidate();
         }
     }
 }
