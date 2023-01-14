@@ -40,6 +40,7 @@
             this.frameLabel = new System.Windows.Forms.Label();
             this.frameTextBox = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.cbSelectionMode = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
@@ -47,7 +48,6 @@
             this.playButton = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.cbSelectionMode = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit();
@@ -208,6 +208,15 @@
             this.panel4.Size = new System.Drawing.Size(730, 39);
             this.panel4.TabIndex = 1;
             // 
+            // cbSelectionMode
+            // 
+            this.cbSelectionMode.Location = new System.Drawing.Point(7, 8);
+            this.cbSelectionMode.Name = "cbSelectionMode";
+            this.cbSelectionMode.Size = new System.Drawing.Size(104, 24);
+            this.cbSelectionMode.TabIndex = 0;
+            this.cbSelectionMode.Text = "Selection Mode";
+            this.cbSelectionMode.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
@@ -297,15 +306,6 @@
             this.trackBar1.TabIndex = 0;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
-            // 
-            // cbSelectionMode
-            // 
-            this.cbSelectionMode.Location = new System.Drawing.Point(7, 8);
-            this.cbSelectionMode.Name = "cbSelectionMode";
-            this.cbSelectionMode.Size = new System.Drawing.Size(104, 24);
-            this.cbSelectionMode.TabIndex = 0;
-            this.cbSelectionMode.Text = "Selection Mode";
-            this.cbSelectionMode.UseVisualStyleBackColor = true;
             // 
             // dboard
             // 
