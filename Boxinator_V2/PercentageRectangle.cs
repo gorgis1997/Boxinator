@@ -6,6 +6,7 @@ namespace Boxinator_V2 {
         public float Y { get; set; }
         public float Width { get; set; }
         public float Height { get; set; }
+        
         public Size ImageSize {get;set;}
         
         public static readonly PercentageRectangle Empty = new PercentageRectangle(0,0,0,0);
@@ -25,6 +26,11 @@ namespace Boxinator_V2 {
         public Rectangle ToRectangle(Size imageSize)
         {
             return new Rectangle((int)(X * imageSize.Width), (int)(Y * imageSize.Height), (int)(Width * imageSize.Width), (int)(Height * imageSize.Height));
+        }
+        
+        // ToString
+        public override string ToString() {
+            return string.Format("X: {0}, Y: {1}, Width: {2}, Height: {3}", (object)X, (object)Y, (object)Width, (object)Height);
         }
         
     }
