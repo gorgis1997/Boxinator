@@ -31,7 +31,7 @@ namespace Boxinator_V2 {
         public Bitmap GetImage(int index) {
             // Check if index is within range
             if (index < 0 || index >= images.Length) {
-                Bitmap error = new Bitmap(100, 100);
+                Bitmap error = (Bitmap) Properties.Resources.ResourceManager.GetObject("BOXINATOR_v3");
                 return error;
             }
             return images[index].Get();
@@ -48,6 +48,14 @@ namespace Boxinator_V2 {
 
         public int GetImageCount() {
             return images.Length;
+        }
+        
+        public void PermeateNewBox(int index, PercentageRectangle box) {
+            // Loop through all images and add the box to them
+            // Start from index to end of images
+            for (int i = index; i < images.Length; i++) {
+                images[i].AddBox(box);
+            }
         }
     }
 }
