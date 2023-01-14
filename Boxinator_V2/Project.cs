@@ -66,11 +66,11 @@ namespace Boxinator_V2 {
             }
         }
         
-        public void PermeateMovedBox(int index, int id, float x, float y) {
+        public void PermeateMovedBox(int index, int id, float x, float y, float width, float height) {
             // Loop through all images and move the box in them
             // Start from index to end of images
             for (int i = index; i < images.Length; i++) {
-                images[i].MoveBox(id, x, y);
+                images[i].MoveBox(id, x, y, width, height);
             }
         }
     }

@@ -41,11 +41,13 @@ namespace Boxinator_V2 {
             }
         }
         
-        public void MoveBox(int id, float x, float y) {
+        public void MoveBox(int id, float x, float y, float width, float height) {
             foreach (var box in _boxes) {
                 if (box.Id != id) continue;
                 box.X = x;
                 box.Y = y;
+                box.Width = width;
+                box.Height = height;
                 break;
             }
         }
