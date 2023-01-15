@@ -490,14 +490,14 @@ namespace Boxinator_V2.Usercontrol
         private void btnPreviousKeyframe_Click(object sender, EventArgs e) {
             var indexKeyframe = _keyframes.IndexOf(trackBar1.Value);
             if (indexKeyframe > 0) {
-                SetImage(indexKeyframe-1);
+                SetImage(_keyframes[indexKeyframe - 1]);
             }
         }
 
         private void btnNextKeyframe_Click(object sender, EventArgs e) {
             var indexKeyframe = _keyframes.IndexOf(trackBar1.Value);
             if (indexKeyframe < _keyframes.Count - 1) {
-                SetImage(indexKeyframe+1);
+                SetImage(_keyframes[indexKeyframe + 1]);
             }
         }
     }
