@@ -210,6 +210,7 @@ namespace Boxinator_V2.Usercontrol
             this.btnNextKeyframe.TabIndex = 3;
             this.btnNextKeyframe.Text = "Next Key";
             this.btnNextKeyframe.UseVisualStyleBackColor = true;
+            this.btnNextKeyframe.Click += new System.EventHandler(this.btnNextKeyframe_Click);
             // 
             // btnPreviousKeyframe
             // 
@@ -220,6 +221,7 @@ namespace Boxinator_V2.Usercontrol
             this.btnPreviousKeyframe.TabIndex = 2;
             this.btnPreviousKeyframe.Text = "Previous Key";
             this.btnPreviousKeyframe.UseVisualStyleBackColor = true;
+            this.btnPreviousKeyframe.Click += new System.EventHandler(this.btnPreviousKeyframe_Click);
             // 
             // cbKeyframe
             // 

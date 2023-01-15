@@ -81,5 +81,6 @@ namespace Boxinator_V2 {
         public void SetBoxAtFrame(int currentKeyframe, PercentageRectangle box) {
             images[currentKeyframe].MoveBox(box.Id, box.X, box.Y, box.Width, box.Height);
         }
+        
     }
 }

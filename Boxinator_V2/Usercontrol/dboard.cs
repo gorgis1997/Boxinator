@@ -21,7 +21,7 @@ namespace Boxinator_V2.Usercontrol
             Logger.LogDebug("picturebox location: " + pictureBox1.Location.X.ToString() + "x" + pictureBox1.Location.Y.ToString());
             pictureBox1.Image = (Bitmap) Properties.Resources.ResourceManager.GetObject("BOXINATOR_v3");
             
-            pictureBox1.Paint -= PicturePaint;
+            //pictureBox1.Paint -= PicturePaint;
             pictureBox1.MouseDown -= pictureBox1_MouseDown;
             pictureBox1.MouseMove -= pictureBox1_MouseMove;
             pictureBox1.MouseUp -= pictureBox1_MouseUp;
@@ -75,14 +75,14 @@ namespace Boxinator_V2.Usercontrol
             cbSelectionMode.Enabled = true;
             btnPreviousKeyframe.Enabled = true;
             btnNextKeyframe.Enabled = true;
-            pictureBox1.Paint += PicturePaint;
+            //pictureBox1.Paint += PicturePaint;
             pictureBox1.MouseDown += pictureBox1_MouseDown;
             pictureBox1.MouseMove += pictureBox1_MouseMove;
             pictureBox1.MouseUp += pictureBox1_MouseUp;
         }
 
         private void DisableControls() {
-            pictureBox1.Paint -= PicturePaint;
+            //pictureBox1.Paint -= PicturePaint;
             pictureBox1.MouseDown -= pictureBox1_MouseDown;
             pictureBox1.MouseMove -= pictureBox1_MouseMove;
             pictureBox1.MouseUp -= pictureBox1_MouseUp;
@@ -122,6 +122,8 @@ namespace Boxinator_V2.Usercontrol
             _highlightedBox = PercentageRectangle.Empty;
             // Set keyframe checkbox if keyframe
             cbKeyframe.Checked = _keyframes.Contains(index);
+            trackBar1.Value = index;
+            frameTextBox.Text = (index).ToString();
             Logger.Log("Image set to " + index.ToString());
         }
         
@@ -236,6 +238,10 @@ namespace Boxinator_V2.Usercontrol
                 }
                 Logger.LogDebug("Boxes: " + _boxes.Count.ToString());
                 _selectedBox = PercentageRectangle.Empty;
+            }
+            // If keyframe, run interpolation
+            if (_keyframes.Contains(trackBar1.Value)) {
+                Interpolate(trackBar1.Value);
             }
             _leftMouseButtonDown = false;
             Logger.LogDebug("pictureBox1_MouseUp event finished execution");
@@ -419,13 +425,18 @@ namespace Boxinator_V2.Usercontrol
 
         private bool _playing = false;
         private void Play(object sender, EventArgs e) {
-            DisableControls();
             if (_playing) {
                 _playing = false;
                 _timer.Stop();
+                btnPlayerPlay.Image = Properties.Resources.playButtonColor;
                 EnableControls();
             }
-            _timer.Start();
+            else {
+                _playing = true;
+                btnPlayerPlay.Image = Properties.Resources.stopButton;
+                _timer.Start();
+                DisableControls();
+            }
         }
 
 
@@ -443,33 +454,51 @@ namespace Boxinator_V2.Usercontrol
             
         }
 
+        private void PerformInterpolation(int start, int end) {
+            var boxesPrev = _project.GetBoxes(start);
+            var boxesCurrent = _project.GetBoxes(end);
+            var framesBetween = end - start - 1;
+                
+            foreach (var box in boxesPrev) {
+                var boxCurrent = boxesCurrent.FirstOrDefault(b => b.Id == box.Id);
+                if (boxCurrent == null) continue;
+                var deltaX = (boxCurrent.X - box.X) / framesBetween;
+                var deltaY = (boxCurrent.Y - box.Y) / framesBetween;
+                var deltaWidth = (boxCurrent.Width - box.Width) / framesBetween;
+                var deltaHeight = (boxCurrent.Height - box.Height) / framesBetween;
+                for (var i = 1; i <= framesBetween; i++) {
+                    var frame = start + i;
+                    var interpolatedBox = new PercentageRectangle(box.X + deltaX * i, box.Y + deltaY * i, box.Width + deltaWidth * i, box.Height + deltaHeight * i, box.Id);
+                    _project.SetBoxAtFrame(frame, interpolatedBox);
+                }
+            }
+        }
         private void Interpolate(int currentKeyframe) {
             if (_keyframes.Count <= 1) return;
     
             var indexKeyframe = _keyframes.IndexOf(currentKeyframe);
             if (indexKeyframe > 0) {
                 var prevKeyframe = _keyframes[indexKeyframe - 1];
-        
-                var boxesPrev = _project.GetBoxes(prevKeyframe);
-                var boxesCurrent = _project.GetBoxes(currentKeyframe);
-        
-                var framesBetween = currentKeyframe - prevKeyframe - 1;
-                
-                foreach (var box in boxesPrev) {
-                    var boxCurrent = boxesCurrent.FirstOrDefault(b => b.Id == box.Id);
-                    if (boxCurrent == null) continue;
-                    var deltaX = (boxCurrent.X - box.X) / framesBetween;
-                    var deltaY = (boxCurrent.Y - box.Y) / framesBetween;
-                    var deltaWidth = (boxCurrent.Width - box.Width) / framesBetween;
-                    var deltaHeight = (boxCurrent.Height - box.Height) / framesBetween;
-                    for (var i = 1; i <= framesBetween; i++) {
-                        var frame = prevKeyframe + i;
-                        var interpolatedBox = new PercentageRectangle(box.X + deltaX * i, box.Y + deltaY * i, box.Width + deltaWidth * i, box.Height + deltaHeight * i, box.Id);
-                        _project.SetBoxAtFrame(frame, interpolatedBox);
-                    }
-                }
+                PerformInterpolation(prevKeyframe, currentKeyframe);
+            }
+            if (indexKeyframe < _keyframes.Count - 1) {
+                var nextKeyframe = _keyframes[indexKeyframe + 1];
+                PerformInterpolation(currentKeyframe, nextKeyframe);
             }
         }
 
+        private void btnPreviousKeyframe_Click(object sender, EventArgs e) {
+            var indexKeyframe = _keyframes.IndexOf(trackBar1.Value);
+            if (indexKeyframe > 0) {
+                SetImage(indexKeyframe-1);
+            }
+        }
+
+        private void btnNextKeyframe_Click(object sender, EventArgs e) {
+            var indexKeyframe = _keyframes.IndexOf(trackBar1.Value);
+            if (indexKeyframe < _keyframes.Count - 1) {
+                SetImage(indexKeyframe+1);
+            }
+        }
     }
 }
