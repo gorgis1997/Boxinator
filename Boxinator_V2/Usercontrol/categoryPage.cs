@@ -40,8 +40,15 @@ namespace Boxinator_V2.Usercontrol
 
         private void button11_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                
+            }
+            else
+            {
+                
+            }
         }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             throw new System.NotImplementedException();

@@ -94,7 +94,7 @@
             this.button11.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.button11.Location = new System.Drawing.Point(476, 427);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(195, 45);
+            this.button11.Size = new System.Drawing.Size(107, 45);
             this.button11.TabIndex = 11;
             this.button11.Text = "Add category";
             this.button11.UseVisualStyleBackColor = false;
