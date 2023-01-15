@@ -28,7 +28,7 @@ class VideoConverter {
 
                     using (Bitmap frame = reader.ReadVideoFrame()) {
                         string outputFile = Path.Combine(outputFolder, $"frame{i:D8}.png");
-                        frame.Save(outputFile, ImageFormat.Png);
+                        frame.Save(outputFile, ImageFormat.Jpeg);
                     }
 
                     // This part slows down the conversion process

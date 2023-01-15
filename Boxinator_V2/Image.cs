@@ -1,18 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace Boxinator_V2 {
     public class Image {
         private string _imagePath;
-        private double[][] annotationBoxes;
+        private List<PercentageRectangle> _boxes;
         
         public Image(string imagePath) {
             _imagePath = imagePath;
-        }
-        
-        public void AddAnnotationBox(double[] box) {
-            //annotationBoxes.Add(box);
+            _boxes = new List<PercentageRectangle>();
         }
 
         public Bitmap Get() {
@@ -25,6 +23,33 @@ namespace Boxinator_V2 {
                 image = Bitmap.FromHicon(SystemIcons.Error.Handle);
             }
             return image;
+        }
+        
+        public List<PercentageRectangle> GetBoxes() {
+            return _boxes;
+        }
+        
+        public void AddBox(PercentageRectangle box) {
+            _boxes.Add(box);
+        }
+        
+        public void DeleteBox(int id) {
+            foreach (var box in _boxes) {
+                if (box.Id != id) continue;
+                _boxes.Remove(box);
+                break;
+            }
+        }
+        
+        public void MoveBox(int id, float x, float y, float width, float height) {
+            foreach (var box in _boxes) {
+                if (box.Id != id) continue;
+                box.X = x;
+                box.Y = y;
+                box.Width = width;
+                box.Height = height;
+                break;
+            }
         }
     }
 }
