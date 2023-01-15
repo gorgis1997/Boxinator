@@ -7,6 +7,7 @@ namespace Boxinator_V2 {
     public class Image {
         private string _imagePath;
         private List<PercentageRectangle> _boxes;
+        private bool _interpolated = false;
         
         public Image(string imagePath) {
             _imagePath = imagePath;
@@ -51,5 +52,12 @@ namespace Boxinator_V2 {
                 break;
             }
         }
+        
+        // getter/setter for _interpolated
+        public bool Interpolated {
+            get => _interpolated;
+            set => _interpolated = value;
+        }
+        
     }
 }

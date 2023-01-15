@@ -73,5 +73,13 @@ namespace Boxinator_V2 {
                 images[i].MoveBox(id, x, y, width, height);
             }
         }
+
+        public object GetBoxAtFrame(int currentKeyframe, int i) {
+            return images[currentKeyframe].GetBoxes()[i];
+        }
+        
+        public void SetBoxAtFrame(int currentKeyframe, PercentageRectangle box) {
+            images[currentKeyframe].MoveBox(box.Id, box.X, box.Y, box.Width, box.Height);
+        }
     }
 }
