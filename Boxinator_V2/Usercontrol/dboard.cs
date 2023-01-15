@@ -20,12 +20,18 @@ namespace Boxinator_V2.Usercontrol
             Logger.LogDebug("picturebox width: " + pictureBox1.Width.ToString() + "x" + pictureBox1.Height.ToString());
             Logger.LogDebug("picturebox location: " + pictureBox1.Location.X.ToString() + "x" + pictureBox1.Location.Y.ToString());
             pictureBox1.Image = (Bitmap) Properties.Resources.ResourceManager.GetObject("BOXINATOR_v3");
+            
+            pictureBox1.Paint -= PicturePaint;
+            pictureBox1.MouseDown -= pictureBox1_MouseDown;
+            pictureBox1.MouseMove -= pictureBox1_MouseMove;
+            pictureBox1.MouseUp -= pictureBox1_MouseUp;
         }
 
         private Project _project;
         // Create a new Timer object
         private Timer _timer;
-
+        List<int> _keyframes = new List<int>();
+        
         public void dboard_Load(string catPath, string path, string projectName, bool modeVideo) {
             Logger.Log("CATPATH: "+ catPath + "\n" + "Dashboard loading " + "\n" + "Path: " + path + "\n" + "Project Name: " + projectName + "\n" + "Mode: " + (modeVideo? "Video" : "Image"));
             if (modeVideo) {
@@ -54,7 +60,37 @@ namespace Boxinator_V2.Usercontrol
 
             _timer = new Timer();
             _timer.Interval = 33;
-            _timer.Tick += new EventHandler(TimerEventProcessor);
+            _timer.Tick += TimerEventProcessor;
+            _keyframes = new List<int>();
+            EnableControls();
+        }
+
+        private void EnableControls() {
+            btnPlayerLeft.Enabled = true;
+            btnPlayerRight.Enabled = true;
+            btnPlayerPlay.Enabled = true;
+            frameTextBox.Enabled = true;
+            trackBar1.Enabled = true;
+            cbKeyframe.Enabled = true;
+            cbSelectionMode.Enabled = true;
+            btnPreviousKeyframe.Enabled = true;
+            btnNextKeyframe.Enabled = true;
+            pictureBox1.Paint += PicturePaint;
+            pictureBox1.MouseDown += pictureBox1_MouseDown;
+            pictureBox1.MouseMove += pictureBox1_MouseMove;
+            pictureBox1.MouseUp += pictureBox1_MouseUp;
+        }
+
+        private void DisableControls() {
+            pictureBox1.Paint -= PicturePaint;
+            pictureBox1.MouseDown -= pictureBox1_MouseDown;
+            pictureBox1.MouseMove -= pictureBox1_MouseMove;
+            pictureBox1.MouseUp -= pictureBox1_MouseUp;
+            cbKeyframe.Enabled = false;
+            cbSelectionMode.Enabled = false;
+            btnPreviousKeyframe.Enabled = false;
+            btnNextKeyframe.Enabled = false;
+            frameTextBox.Enabled = false;
         }
         private Size _originalSize;
 
@@ -62,7 +98,11 @@ namespace Boxinator_V2.Usercontrol
         {
             var list = category.GetCategories();
             comboBox1.Items.AddRange(list.ToArray());
-            comboBox1.SelectedIndex=(0);
+            // If there are cats, select the first one
+            if (list.Count > 0)
+            {
+                comboBox1.SelectedIndex = 0;
+            }
             categoryLabel.Text = category.CatName();
         }
         private void Form1_SizeChanged(object sender, EventArgs e)
@@ -80,6 +120,8 @@ namespace Boxinator_V2.Usercontrol
             pictureBox1.Invalidate();
             _selectedBox = PercentageRectangle.Empty;
             _highlightedBox = PercentageRectangle.Empty;
+            // Set keyframe checkbox if keyframe
+            cbKeyframe.Checked = _keyframes.Contains(index);
             Logger.Log("Image set to " + index.ToString());
         }
         
@@ -109,9 +151,9 @@ namespace Boxinator_V2.Usercontrol
         private PercentageRectangle _selectedBox = PercentageRectangle.Empty;
         private PercentageRectangle _highlightedBox = PercentageRectangle.Empty;
         private Point _startPoint;
-        private bool _leftMouseButtonDown = false;
-        private int _nextId = 0;
-        private bool _movingBox = false;
+        private bool _leftMouseButtonDown;
+        private int _nextId;
+        private bool _movingBox;
 
         private void PicturePaint(object sender, PaintEventArgs e) {
             if (_boxes == null) return;
@@ -265,7 +307,7 @@ namespace Boxinator_V2.Usercontrol
             _lockTop = false;
             _lockBottom = false;
         }
-        const int resizeDist = 6;
+        const int resizeDist = 8;
         private void ResizeLeft(MouseEventArgs e, Rectangle rect) {
             if (_leftMouseButtonDown) {
                 _lockLeft = true;
@@ -375,8 +417,59 @@ namespace Boxinator_V2.Usercontrol
             trackBar1.Value += 1;
         }
 
+        private bool _playing = false;
         private void Play(object sender, EventArgs e) {
+            DisableControls();
+            if (_playing) {
+                _playing = false;
+                _timer.Stop();
+                EnableControls();
+            }
             _timer.Start();
         }
+
+
+        private void cbKeyframe_CheckedChanged(object sender, EventArgs e) {
+            // If the user has checked the keyframe checkbox, add the current frame to the keyframes list
+            if (cbKeyframe.Checked) {
+                _keyframes.Add(trackBar1.Value);
+                _keyframes.Sort();
+                Interpolate(trackBar1.Value);
+            }
+            else {
+                // If the user has unchecked the keyframe checkbox, remove the current frame from the keyframes list
+                _keyframes.Remove(trackBar1.Value);
+            }
+            
+        }
+
+        private void Interpolate(int currentKeyframe) {
+            if (_keyframes.Count <= 1) return;
+    
+            var indexKeyframe = _keyframes.IndexOf(currentKeyframe);
+            if (indexKeyframe > 0) {
+                var prevKeyframe = _keyframes[indexKeyframe - 1];
+        
+                var boxesPrev = _project.GetBoxes(prevKeyframe);
+                var boxesCurrent = _project.GetBoxes(currentKeyframe);
+        
+                var framesBetween = currentKeyframe - prevKeyframe - 1;
+                
+                foreach (var box in boxesPrev) {
+                    var boxCurrent = boxesCurrent.FirstOrDefault(b => b.Id == box.Id);
+                    if (boxCurrent == null) continue;
+                    var deltaX = (boxCurrent.X - box.X) / framesBetween;
+                    var deltaY = (boxCurrent.Y - box.Y) / framesBetween;
+                    var deltaWidth = (boxCurrent.Width - box.Width) / framesBetween;
+                    var deltaHeight = (boxCurrent.Height - box.Height) / framesBetween;
+                    for (var i = 1; i <= framesBetween; i++) {
+                        var frame = prevKeyframe + i;
+                        var interpolatedBox = new PercentageRectangle(box.X + deltaX * i, box.Y + deltaY * i, box.Width + deltaWidth * i, box.Height + deltaHeight * i, box.Id);
+                        _project.SetBoxAtFrame(frame, interpolatedBox);
+                    }
+                }
+            }
+        }
+
     }
 }
