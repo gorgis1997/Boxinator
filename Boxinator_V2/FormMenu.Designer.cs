@@ -26,7 +26,8 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMenu));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.docsButton = new System.Windows.Forms.Button();
@@ -40,12 +41,12 @@
             this.panelMainWindow = new System.Windows.Forms.Panel();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.Logotype)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Logotype)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
             // 
-            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (7)))), ((int) (((byte) (14)))), ((int) (((byte) (21)))));
+            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(14)))), ((int)(((byte)(21)))));
             this.panelMenu.Controls.Add(this.docsButton);
             this.panelMenu.Controls.Add(this.categoryButton);
             this.panelMenu.Controls.Add(this.saveButton);
@@ -64,13 +65,13 @@
             this.docsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.docsButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.docsButton.FlatAppearance.BorderSize = 0;
-            this.docsButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
-            this.docsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
-            this.docsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
+            this.docsButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
+            this.docsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
+            this.docsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
             this.docsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.docsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.docsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.docsButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.docsButton.Image = ((System.Drawing.Image) (resources.GetObject("docsButton.Image")));
+            this.docsButton.Image = ((System.Drawing.Image)(resources.GetObject("docsButton.Image")));
             this.docsButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.docsButton.Location = new System.Drawing.Point(0, 307);
             this.docsButton.Name = "docsButton";
@@ -86,13 +87,13 @@
             this.categoryButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.categoryButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.categoryButton.FlatAppearance.BorderSize = 0;
-            this.categoryButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
-            this.categoryButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
-            this.categoryButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
+            this.categoryButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
+            this.categoryButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
+            this.categoryButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
             this.categoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.categoryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.categoryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.categoryButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.categoryButton.Image = ((System.Drawing.Image) (resources.GetObject("categoryButton.Image")));
+            this.categoryButton.Image = ((System.Drawing.Image)(resources.GetObject("categoryButton.Image")));
             this.categoryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.categoryButton.Location = new System.Drawing.Point(0, 257);
             this.categoryButton.Name = "categoryButton";
@@ -102,19 +103,20 @@
             this.categoryButton.Text = " Categories";
             this.categoryButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.categoryButton.UseVisualStyleBackColor = true;
+            this.categoryButton.Click += new System.EventHandler(this.categoryButton_Click);
             // 
             // saveButton
             // 
             this.saveButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.saveButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.saveButton.FlatAppearance.BorderSize = 0;
-            this.saveButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
-            this.saveButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
-            this.saveButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
+            this.saveButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
+            this.saveButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
+            this.saveButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.saveButton.Image = ((System.Drawing.Image) (resources.GetObject("saveButton.Image")));
+            this.saveButton.Image = ((System.Drawing.Image)(resources.GetObject("saveButton.Image")));
             this.saveButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.saveButton.Location = new System.Drawing.Point(0, 207);
             this.saveButton.Name = "saveButton";
@@ -130,13 +132,13 @@
             this.openButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.openButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.openButton.FlatAppearance.BorderSize = 0;
-            this.openButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
-            this.openButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
-            this.openButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
+            this.openButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
+            this.openButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
+            this.openButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
             this.openButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.openButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.openButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.openButton.Image = ((System.Drawing.Image) (resources.GetObject("openButton.Image")));
+            this.openButton.Image = ((System.Drawing.Image)(resources.GetObject("openButton.Image")));
             this.openButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openButton.Location = new System.Drawing.Point(0, 157);
             this.openButton.Name = "openButton";
@@ -154,13 +156,13 @@
             this.newButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.newButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.newButton.FlatAppearance.BorderSize = 0;
-            this.newButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
-            this.newButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
-            this.newButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
+            this.newButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
+            this.newButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
+            this.newButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
             this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.newButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.newButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.newButton.Image = ((System.Drawing.Image) (resources.GetObject("newButton.Image")));
+            this.newButton.Image = ((System.Drawing.Image)(resources.GetObject("newButton.Image")));
             this.newButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.newButton.Location = new System.Drawing.Point(0, 107);
             this.newButton.Name = "newButton";
@@ -178,13 +180,13 @@
             this.dashboardButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dashboardButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.dashboardButton.FlatAppearance.BorderSize = 0;
-            this.dashboardButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
-            this.dashboardButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
-            this.dashboardButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
+            this.dashboardButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
+            this.dashboardButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
+            this.dashboardButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
             this.dashboardButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dashboardButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.dashboardButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dashboardButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.dashboardButton.Image = ((System.Drawing.Image) (resources.GetObject("dashboardButton.Image")));
+            this.dashboardButton.Image = ((System.Drawing.Image)(resources.GetObject("dashboardButton.Image")));
             this.dashboardButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.dashboardButton.Location = new System.Drawing.Point(0, 57);
             this.dashboardButton.Name = "dashboardButton";
@@ -208,7 +210,7 @@
             // 
             // Logotype
             // 
-            this.Logotype.Image = ((System.Drawing.Image) (resources.GetObject("Logotype.Image")));
+            this.Logotype.Image = ((System.Drawing.Image)(resources.GetObject("Logotype.Image")));
             this.Logotype.Location = new System.Drawing.Point(12, 12);
             this.Logotype.Name = "Logotype";
             this.Logotype.Size = new System.Drawing.Size(156, 39);
@@ -219,7 +221,7 @@
             // 
             // panelMainWindow
             // 
-            this.panelMainWindow.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (18)))), ((int) (((byte) (33)))), ((int) (((byte) (49)))));
+            this.panelMainWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(33)))), ((int)(((byte)(49)))));
             this.panelMainWindow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMainWindow.Location = new System.Drawing.Point(180, 0);
             this.panelMainWindow.Name = "panelMainWindow";
@@ -238,7 +240,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormKeyDown);
             this.panelMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize) (this.Logotype)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Logotype)).EndInit();
             this.ResumeLayout(false);
         }
 

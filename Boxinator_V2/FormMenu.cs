@@ -17,14 +17,18 @@ namespace Boxinator_V2
         private readonly dboard _dashboard = new dboard();
         private readonly newProject _newProject = new newProject();
         private readonly openProject _openProject = new openProject();
+        private readonly categoryPage _categoryPage = new categoryPage();
         
         private Button _submitButton;
 
         public FormMenu()
         {
+            //Category categ = new Category();
+            //categ.Cat(); //TEMP
             InitializeComponent();
             CreateSubmitButton();
             _home.Dock = DockStyle.Fill;
+            _categoryPage.Dock = DockStyle.Fill;
             _dashboard.Dock = DockStyle.Fill;
             _newProject.Dock = DockStyle.Fill;
             _openProject.Dock = DockStyle.Fill;
@@ -47,6 +51,11 @@ namespace Boxinator_V2
             if (string.IsNullOrEmpty(_newProject.ProjectName) || string.IsNullOrEmpty(_newProject.ProjectPath)) {
                 MessageBox.Show("FILL OUT THE FIELDS YO", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            if (!System.IO.File.Exists(_newProject.ProjectCat))
+            {
+                MessageBox.Show("You have to submit a valid category file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             // Video mode
             else if (_newProject.ProjectModeIsVideo) {
                 // Check path if video file exists
@@ -54,7 +63,7 @@ namespace Boxinator_V2
                     MessageBox.Show("Video file does not exist", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else {
-                    _dashboard.dboard_Load(_newProject.ProjectPath, _newProject.ProjectName, _newProject.ProjectModeIsVideo);
+                    _dashboard.dboard_Load(_newProject.ProjectCat, _newProject.ProjectPath, _newProject.ProjectName, _newProject.ProjectModeIsVideo);
                     addUserControl(_dashboard);
                 }
             }
@@ -63,8 +72,12 @@ namespace Boxinator_V2
                 if (!System.IO.Directory.Exists(_newProject.ProjectPath)) {
                     MessageBox.Show("Folder does not exist", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else {
-                    _dashboard.dboard_Load(_newProject.ProjectPath, _newProject.ProjectName, _newProject.ProjectModeIsVideo);
+                else
+                {
+                    Category category = new Category(_newProject.ProjectCat);
+                    _dashboard.dboard_Load(_newProject.ProjectCat, _newProject.ProjectPath, _newProject.ProjectName, _newProject.ProjectModeIsVideo);
+                    _dashboard.loadCategories(category);
+                    _categoryPage.loadTags(category);
                     addUserControl(_dashboard);
                 }
             }
@@ -124,6 +137,10 @@ namespace Boxinator_V2
             if (e.KeyCode == Keys.Delete) {
                 _dashboard.DeleteSelected();
             }
+        private void categoryButton_Click(object sender, EventArgs e)
+        {
+            highlightButton(categoryButton);
+            addUserControl(_categoryPage);
         }
     }
 }

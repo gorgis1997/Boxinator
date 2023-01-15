@@ -26,8 +26,8 @@ namespace Boxinator_V2.Usercontrol
         // Create a new Timer object
         private Timer _timer;
 
-        public void dboard_Load(string path, string projectName, bool modeVideo) {
-            Logger.Log("Dashboard loading " + "\n" + "Path: " + path + "\n" + "Project Name: " + projectName + "\n" + "Mode: " + (modeVideo? "Video" : "Image"));
+        public void dboard_Load(string catPath, string path, string projectName, bool modeVideo) {
+            Logger.Log("CATPATH: "+ catPath + "\n" + "Dashboard loading " + "\n" + "Path: " + path + "\n" + "Project Name: " + projectName + "\n" + "Mode: " + (modeVideo? "Video" : "Image"));
             if (modeVideo) {
                 var converterDialog = new ConverterDialogForm(path);
                 var result = converterDialog.ShowDialog();
@@ -37,9 +37,10 @@ namespace Boxinator_V2.Usercontrol
                 }
                 path = converterDialog.Output();
             }
+            label1.Text = "Dashboard - " + projectName;
+            //comboBox1.Items.AddRange();
             _project = new Project(projectName, path);
             _project.InitializeImages();
-            
             pictureBox1.Size = panel2.Size;
             pictureBox1.Location = new Point(0, 0);
             
@@ -57,6 +58,13 @@ namespace Boxinator_V2.Usercontrol
         }
         private Size _originalSize;
 
+        public void loadCategories(Category category)
+        {
+            var list = category.GetCategories();
+            comboBox1.Items.AddRange(list.ToArray());
+            comboBox1.SelectedIndex=(0);
+            categoryLabel.Text = category.CatName();
+        }
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
             float zoom = Math.Min((float)pictureBox1.Width / _originalSize.Width, (float)pictureBox1.Height / _originalSize.Height);
