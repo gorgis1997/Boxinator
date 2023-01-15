@@ -17,7 +17,8 @@ namespace Boxinator_V2
         private readonly dboard _dashboard = new dboard();
         private readonly newProject _newProject = new newProject();
         private readonly openProject _openProject = new openProject();
-
+        private readonly categoryPage _categoryPage = new categoryPage();
+        
         private Button _submitButton;
 
         public FormMenu()
@@ -27,6 +28,7 @@ namespace Boxinator_V2
             InitializeComponent();
             CreateSubmitButton();
             _home.Dock = DockStyle.Fill;
+            _categoryPage.Dock = DockStyle.Fill;
             _dashboard.Dock = DockStyle.Fill;
             _newProject.Dock = DockStyle.Fill;
             _openProject.Dock = DockStyle.Fill;
@@ -68,8 +70,12 @@ namespace Boxinator_V2
                 if (!System.IO.Directory.Exists(_newProject.ProjectPath)) {
                     MessageBox.Show("Folder does not exist", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else {
+                else
+                {
+                    Category category = new Category(_newProject.ProjectCat);
                     _dashboard.dboard_Load(_newProject.ProjectCat, _newProject.ProjectPath, _newProject.ProjectName, _newProject.ProjectModeIsVideo);
+                    _dashboard.loadCategories(category);
+                    _categoryPage.loadTags(category);
                     addUserControl(_dashboard);
                 }
             }
@@ -122,6 +128,12 @@ namespace Boxinator_V2
         {
             highlightButton(newButton);
             addUserControl(_newProject);
+        }
+
+        private void categoryButton_Click(object sender, EventArgs e)
+        {
+            highlightButton(categoryButton);
+            addUserControl(_categoryPage);
         }
     }
 }

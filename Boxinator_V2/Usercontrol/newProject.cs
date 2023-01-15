@@ -63,17 +63,16 @@ namespace Boxinator_V2.Usercontrol {
                 CheckFileExists = true,
                 CheckPathExists = true,
 
-                DefaultExt = "JSON",
-                Filter = "JSON files (*.JSON)|*.JSON",
+                DefaultExt = "txt",
+                Filter = "txt files (*.txt)|*.txt",
                 FilterIndex = 2,
                 RestoreDirectory = true,
 
                 ReadOnlyChecked = true,
                 ShowReadOnly = true,
             };
-            Category category = new Category();
             if (openFileDialog1.ShowDialog() == DialogResult.OK) {
-                comboBox1.Text = openFileDialog1.FileName;
+                catTextBox.Text = openFileDialog1.FileName;
             }
         }
 
@@ -83,8 +82,9 @@ namespace Boxinator_V2.Usercontrol {
         private void tb_videopath_TextChanged(object sender, EventArgs e) {
             _projectPath = tb_videopath.Text;
         }
-        private void tb_categorypath_TextChanged(object sender, EventArgs e) {
-            _projectCat = comboBox1.Text;
+        private void tb_categorypath_TextChanged(object sender, EventArgs e)
+        {
+            _projectCat = catTextBox.Text;
         }
         private void tb_folderpath_TextChanged(object sender, EventArgs e) {
             _projectPath = tb_folderpath.Text;
@@ -116,6 +116,5 @@ namespace Boxinator_V2.Usercontrol {
                 tb_folderpath.Text = folderBrowserDialog1.SelectedPath;
             }
         }
-        
     }
 }

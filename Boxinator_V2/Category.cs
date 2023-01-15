@@ -17,25 +17,31 @@ using Boxinator_V2;
 using Boxinator_V2.Usercontrol;
 
 public class Category
-{
-    public class CategoryData
+{ 
+    List<string> categoryList = new List<string>();
+    private string _categoryPath;
+    public List<string> GetCategories()
     {
-        public string Category { get; set; }
+        return categoryList;
     }
-    public void Cat(string categoryPath, System.Windows.Forms.ComboBox comboBox, System.Windows.Forms.Label categoryLabel)
+    public Category(string categoryPath)
     {
-        categoryPath = categoryPath.Replace("\\", "/");
-        List<CategoryData> categoryList = new List<CategoryData>();
-        string json = File.ReadAllText(categoryPath);
-        // Deserialize the JSON data to a list of CategoryData objects
-        categoryList = JsonConvert.DeserializeObject<List<CategoryData>>(json);
-        foreach (var item in categoryList)
+        string[] lines = File.ReadAllLines(categoryPath);
+        foreach (var line in lines)
         {
-            comboBox.Items.AddRange(new Object[] {item.Category});
+            categoryList.Add(line);
+            
         }
 
-        int lastSlash = categoryPath.LastIndexOf("/");
-        int beforeJSON = categoryPath.LastIndexOf(".");
-        categoryLabel.Text = categoryPath.Substring(lastSlash + 1, beforeJSON - lastSlash - 1);
+        this._categoryPath = categoryPath;
+    }
+
+    public string CatName()
+    {
+        _categoryPath = _categoryPath.Replace("\\", "/");
+        int lastSlash = _categoryPath.LastIndexOf("/");
+        int beforeJSON = _categoryPath.LastIndexOf(".");
+        _categoryPath = _categoryPath.Substring(lastSlash + 1, beforeJSON - lastSlash - 1);
+        return _categoryPath;
     }
 }

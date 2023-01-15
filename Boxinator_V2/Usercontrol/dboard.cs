@@ -30,9 +30,6 @@ namespace Boxinator_V2.Usercontrol
                 }
                 path = converterDialog.Output();
             }
-            
-            Category category = new Category();
-            category.Cat(catPath, comboBox1, categoryLabel);
             label1.Text = "Dashboard - " + projectName;
             //comboBox1.Items.AddRange();
             _project = new Project(projectName, path);
@@ -51,6 +48,13 @@ namespace Boxinator_V2.Usercontrol
         private float _zoom = 1f;
         private Size _originalSize;
 
+        public void loadCategories(Category category)
+        {
+            var list = category.GetCategories();
+            comboBox1.Items.AddRange(list.ToArray());
+            comboBox1.SelectedIndex=(0);
+            categoryLabel.Text = category.CatName();
+        }
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
             float zoom = Math.Min((float)pictureBox1.Width / _originalSize.Width, (float)pictureBox1.Height / _originalSize.Height);
