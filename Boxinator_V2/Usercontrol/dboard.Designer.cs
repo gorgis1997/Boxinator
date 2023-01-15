@@ -43,8 +43,10 @@ namespace Boxinator_V2.Usercontrol
             this.frameLabel = new System.Windows.Forms.Label();
             this.frameTextBox = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnNextKey = new System.Windows.Forms.Button();
+            this.btnPreviousKey = new System.Windows.Forms.Button();
+            this.cbKeyframe = new System.Windows.Forms.CheckBox();
+            this.cbSelectionMode = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
@@ -119,13 +121,14 @@ namespace Boxinator_V2.Usercontrol
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(856, 402);
             this.panel2.TabIndex = 7;
-            this.panel2.SizeChanged += new System.EventHandler(this.panel2_SizeChanged);
             this.panel2.Resize += new System.EventHandler(this.WindowResized);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.ErrorImage = global::Boxinator_V2.Properties.Resources.BOXINATOR_v3;
+            this.pictureBox1.Image = global::Boxinator_V2.Properties.Resources.BOXINATOR_v3;
+            this.pictureBox1.InitialImage = global::Boxinator_V2.Properties.Resources.BOXINATOR_v3;
             this.pictureBox1.Location = new System.Drawing.Point(207, 119);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(431, 166);
@@ -190,30 +193,52 @@ namespace Boxinator_V2.Usercontrol
             // 
             // panel4
             // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(92)))), ((int)(((byte)(255)))));
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.label2);
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
+            this.panel4.Controls.Add(this.btnNextKey);
+            this.panel4.Controls.Add(this.btnPreviousKey);
+            this.panel4.Controls.Add(this.cbKeyframe);
+            this.panel4.Controls.Add(this.cbSelectionMode);
             this.panel4.Location = new System.Drawing.Point(123, 3);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(730, 39);
             this.panel4.TabIndex = 1;
             // 
-            // label3
+            // btnNextKey
             // 
-            this.label3.Location = new System.Drawing.Point(189, 7);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(385, 23);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "label3";
+            this.btnNextKey.Location = new System.Drawing.Point(308, 5);
+            this.btnNextKey.Name = "btnNextKey";
+            this.btnNextKey.Size = new System.Drawing.Size(94, 28);
+            this.btnNextKey.TabIndex = 3;
+            this.btnNextKey.Text = "Next Key";
+            this.btnNextKey.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // btnPreviousKey
             // 
-            this.label2.Location = new System.Drawing.Point(11, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(137, 23);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "label2";
+            this.btnPreviousKey.Location = new System.Drawing.Point(208, 5);
+            this.btnPreviousKey.Name = "btnPreviousKey";
+            this.btnPreviousKey.Size = new System.Drawing.Size(94, 28);
+            this.btnPreviousKey.TabIndex = 2;
+            this.btnPreviousKey.Text = "Previous Key";
+            this.btnPreviousKey.UseVisualStyleBackColor = true;
+            // 
+            // cbKeyframe
+            // 
+            this.cbKeyframe.Location = new System.Drawing.Point(120, 8);
+            this.cbKeyframe.Name = "cbKeyframe";
+            this.cbKeyframe.Size = new System.Drawing.Size(82, 24);
+            this.cbKeyframe.TabIndex = 1;
+            this.cbKeyframe.Text = "Keyframe";
+            this.cbKeyframe.UseVisualStyleBackColor = true;
+            // 
+            // cbSelectionMode
+            // 
+            this.cbSelectionMode.Location = new System.Drawing.Point(7, 8);
+            this.cbSelectionMode.Name = "cbSelectionMode";
+            this.cbSelectionMode.Size = new System.Drawing.Size(104, 24);
+            this.cbSelectionMode.TabIndex = 0;
+            this.cbSelectionMode.Text = "Selection Mode";
+            this.cbSelectionMode.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel2
             // 
@@ -283,6 +308,7 @@ namespace Boxinator_V2.Usercontrol
             this.playButton.Size = new System.Drawing.Size(46, 33);
             this.playButton.TabIndex = 0;
             this.playButton.UseVisualStyleBackColor = false;
+            this.playButton.Click += new System.EventHandler(this.Play);
             // 
             // panel6
             // 
@@ -332,8 +358,11 @@ namespace Boxinator_V2.Usercontrol
             this.ResumeLayout(false);
         }
 
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox cbKeyframe;
+        private System.Windows.Forms.Button btnPreviousKey;
+        private System.Windows.Forms.Button btnNextKey;
+
+        private System.Windows.Forms.CheckBox cbSelectionMode;
 
         #endregion
 

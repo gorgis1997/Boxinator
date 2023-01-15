@@ -33,6 +33,8 @@ namespace Boxinator_V2
             _newProject.Dock = DockStyle.Fill;
             _openProject.Dock = DockStyle.Fill;
             addUserControl(_home);
+            
+            this.KeyPreview = true;
         }
 
         private void CreateSubmitButton() {
@@ -130,6 +132,11 @@ namespace Boxinator_V2
             addUserControl(_newProject);
         }
 
+        private void FormKeyDown(object sender, KeyEventArgs e) {
+            // If key is delete
+            if (e.KeyCode == Keys.Delete) {
+                _dashboard.DeleteSelected();
+            }
         private void categoryButton_Click(object sender, EventArgs e)
         {
             highlightButton(categoryButton);

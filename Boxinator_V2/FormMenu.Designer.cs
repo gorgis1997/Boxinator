@@ -237,6 +237,7 @@
             this.Controls.Add(this.panelMenu);
             this.Name = "FormMenu";
             this.Text = "Form1";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormKeyDown);
             this.panelMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Logotype)).EndInit();

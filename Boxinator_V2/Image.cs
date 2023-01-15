@@ -28,5 +28,28 @@ namespace Boxinator_V2 {
         public List<PercentageRectangle> GetBoxes() {
             return _boxes;
         }
+        
+        public void AddBox(PercentageRectangle box) {
+            _boxes.Add(box);
+        }
+        
+        public void DeleteBox(int id) {
+            foreach (var box in _boxes) {
+                if (box.Id != id) continue;
+                _boxes.Remove(box);
+                break;
+            }
+        }
+        
+        public void MoveBox(int id, float x, float y, float width, float height) {
+            foreach (var box in _boxes) {
+                if (box.Id != id) continue;
+                box.X = x;
+                box.Y = y;
+                box.Width = width;
+                box.Height = height;
+                break;
+            }
+        }
     }
 }
