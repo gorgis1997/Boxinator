@@ -40,8 +40,8 @@ public class Category
     {
         _categoryPath = _categoryPath.Replace("\\", "/");
         int lastSlash = _categoryPath.LastIndexOf("/");
-        int beforeJSON = _categoryPath.LastIndexOf(".");
-        _categoryPath = _categoryPath.Substring(lastSlash + 1, beforeJSON - lastSlash - 1);
+        int beforeFtype = _categoryPath.LastIndexOf(".");
+        _categoryPath = _categoryPath.Substring(lastSlash + 1, beforeFtype - lastSlash - 1);
         return _categoryPath;
     }
 }

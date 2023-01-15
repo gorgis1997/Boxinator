@@ -63,7 +63,10 @@ namespace Boxinator_V2
                     MessageBox.Show("Video file does not exist", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else {
+                    Category category = new Category(_newProject.ProjectCat);
                     _dashboard.dboard_Load(_newProject.ProjectCat, _newProject.ProjectPath, _newProject.ProjectName, _newProject.ProjectModeIsVideo);
+                    _dashboard.loadCategories(category);
+                    _categoryPage.loadTags(category);
                     addUserControl(_dashboard);
                 }
             }
