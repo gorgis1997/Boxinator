@@ -40,6 +40,9 @@
             this.frameLabel = new System.Windows.Forms.Label();
             this.frameTextBox = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnNextKey = new System.Windows.Forms.Button();
+            this.btnPreviousKey = new System.Windows.Forms.Button();
+            this.cbKeyframe = new System.Windows.Forms.CheckBox();
             this.cbSelectionMode = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -202,11 +205,41 @@
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (127)))), ((int) (((byte) (92)))), ((int) (((byte) (255)))));
+            this.panel4.Controls.Add(this.btnNextKey);
+            this.panel4.Controls.Add(this.btnPreviousKey);
+            this.panel4.Controls.Add(this.cbKeyframe);
             this.panel4.Controls.Add(this.cbSelectionMode);
             this.panel4.Location = new System.Drawing.Point(123, 3);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(730, 39);
             this.panel4.TabIndex = 1;
+            // 
+            // btnNextKey
+            // 
+            this.btnNextKey.Location = new System.Drawing.Point(308, 5);
+            this.btnNextKey.Name = "btnNextKey";
+            this.btnNextKey.Size = new System.Drawing.Size(94, 28);
+            this.btnNextKey.TabIndex = 3;
+            this.btnNextKey.Text = "Next Key";
+            this.btnNextKey.UseVisualStyleBackColor = true;
+            // 
+            // btnPreviousKey
+            // 
+            this.btnPreviousKey.Location = new System.Drawing.Point(208, 5);
+            this.btnPreviousKey.Name = "btnPreviousKey";
+            this.btnPreviousKey.Size = new System.Drawing.Size(94, 28);
+            this.btnPreviousKey.TabIndex = 2;
+            this.btnPreviousKey.Text = "Previous Key";
+            this.btnPreviousKey.UseVisualStyleBackColor = true;
+            // 
+            // cbKeyframe
+            // 
+            this.cbKeyframe.Location = new System.Drawing.Point(120, 8);
+            this.cbKeyframe.Name = "cbKeyframe";
+            this.cbKeyframe.Size = new System.Drawing.Size(82, 24);
+            this.cbKeyframe.TabIndex = 1;
+            this.cbKeyframe.Text = "Keyframe";
+            this.cbKeyframe.UseVisualStyleBackColor = true;
             // 
             // cbSelectionMode
             // 
@@ -334,6 +367,10 @@
             ((System.ComponentModel.ISupportInitialize) (this.trackBar1)).EndInit();
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.CheckBox cbKeyframe;
+        private System.Windows.Forms.Button btnPreviousKey;
+        private System.Windows.Forms.Button btnNextKey;
 
         private System.Windows.Forms.CheckBox cbSelectionMode;
 

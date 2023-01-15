@@ -26,8 +26,6 @@ namespace Boxinator_V2.Usercontrol
         // Create a new Timer object
         private Timer _timer;
 
-            
-
         public void dboard_Load(string path, string projectName, bool modeVideo) {
             Logger.Log("Dashboard loading " + "\n" + "Path: " + path + "\n" + "Project Name: " + projectName + "\n" + "Mode: " + (modeVideo? "Video" : "Image"));
             if (modeVideo) {
