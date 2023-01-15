@@ -137,6 +137,8 @@ namespace Boxinator_V2
             if (e.KeyCode == Keys.Delete) {
                 _dashboard.DeleteSelected();
             }
+        }
+
         private void categoryButton_Click(object sender, EventArgs e)
         {
             highlightButton(categoryButton);
