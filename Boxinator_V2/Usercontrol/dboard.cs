@@ -490,16 +490,13 @@ namespace Boxinator_V2.Usercontrol
 
         private void btnPreviousKeyframe_Click(object sender, EventArgs e) {
             var prevKeyframe = _keyframes.Where(k => k < trackBar1.Value).OrderByDescending(k => k).FirstOrDefault();
-            
             SetImage(prevKeyframe);
-
         }
 
         private void btnNextKeyframe_Click(object sender, EventArgs e) {
             var nextKeyframe = _keyframes.Where(k => k > trackBar1.Value).OrderBy(k => k).FirstOrDefault();
-            
             if (nextKeyframe != 0) {
-                SetImage(_keyframes[nextKeyframe]);
+                SetImage(nextKeyframe);
             }
         }
     }
