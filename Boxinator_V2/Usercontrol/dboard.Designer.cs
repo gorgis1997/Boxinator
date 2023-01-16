@@ -204,11 +204,11 @@ namespace Boxinator_V2.Usercontrol
             // btnNextKeyframe
             // 
             this.btnNextKeyframe.Enabled = false;
-            this.btnNextKeyframe.Location = new System.Drawing.Point(308, 5);
+            this.btnNextKeyframe.Location = new System.Drawing.Point(330, 5);
             this.btnNextKeyframe.Name = "btnNextKeyframe";
-            this.btnNextKeyframe.Size = new System.Drawing.Size(94, 28);
+            this.btnNextKeyframe.Size = new System.Drawing.Size(118, 28);
             this.btnNextKeyframe.TabIndex = 3;
-            this.btnNextKeyframe.Text = "Next Key";
+            this.btnNextKeyframe.Text = "Next keyframe";
             this.btnNextKeyframe.UseVisualStyleBackColor = true;
             this.btnNextKeyframe.Click += new System.EventHandler(this.btnNextKeyframe_Click);
             // 
@@ -217,9 +217,9 @@ namespace Boxinator_V2.Usercontrol
             this.btnPreviousKeyframe.Enabled = false;
             this.btnPreviousKeyframe.Location = new System.Drawing.Point(208, 5);
             this.btnPreviousKeyframe.Name = "btnPreviousKeyframe";
-            this.btnPreviousKeyframe.Size = new System.Drawing.Size(94, 28);
+            this.btnPreviousKeyframe.Size = new System.Drawing.Size(116, 28);
             this.btnPreviousKeyframe.TabIndex = 2;
-            this.btnPreviousKeyframe.Text = "Previous Key";
+            this.btnPreviousKeyframe.Text = "Previous keyframe";
             this.btnPreviousKeyframe.UseVisualStyleBackColor = true;
             this.btnPreviousKeyframe.Click += new System.EventHandler(this.btnPreviousKeyframe_Click);
             // 
