@@ -259,6 +259,7 @@ namespace Boxinator_V2.Usercontrol
             }
             else {
                 if (!_leftMouseButtonDown) return;
+                pictureBox1.Cursor = Cursors.Cross;
                 _selectedBox.Width = (float)(e.X - _startPoint.X) / pictureBox1.Width;
                 _selectedBox.Height = (float)(e.Y - _startPoint.Y) / pictureBox1.Height;
                 if (_selectedBox.Width < 0) {
