@@ -38,7 +38,7 @@ namespace Boxinator_V2 {
                 MessageBox.Show(@"Operation was stopped");
             }
             catch (Exception ex) {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
             }
             finally {
                 _cancellationTokenSource.Dispose();
