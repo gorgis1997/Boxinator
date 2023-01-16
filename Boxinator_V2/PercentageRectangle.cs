@@ -11,6 +11,8 @@ namespace Boxinator_V2 {
         
         public int Id {get;set;}
         
+        public string CategoryTag {get;set;}
+        
         public static readonly PercentageRectangle Empty = new PercentageRectangle(0,0,0,0, -1);
         
         public PercentageRectangle(float x, float y, float width, float height, int id) {
