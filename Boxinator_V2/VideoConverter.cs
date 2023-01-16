@@ -10,6 +10,7 @@ using System.Drawing.Imaging;
 using System.Threading;
 using System.Windows.Forms;
 using Accord.Video.FFMPEG;
+using Boxinator_V2;
 
 class VideoConverter {
 
@@ -21,8 +22,8 @@ class VideoConverter {
 
             using (VideoFileReader reader = new VideoFileReader()) {
                 reader.Open(videoFile);
+                Logger.LogDebug("video");
                 long totalFrames = reader.FrameCount;
-
                 for (int i = 0; i < totalFrames; i++) {
                     cancellationToken.ThrowIfCancellationRequested();
 

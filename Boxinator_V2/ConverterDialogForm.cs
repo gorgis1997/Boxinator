@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using Boxinator_V2.Usercontrol;
 
 namespace Boxinator_V2 {
     public partial class ConverterDialogForm : Form {
@@ -30,7 +31,6 @@ namespace Boxinator_V2 {
             var progress = new Progress<int>(p => progressBar1.Value = p);
             var status = new Progress<string>(s => lblProgress.Text = s);
             var timeReaming = new Progress<string>(t => label2.Text = t);
-            
             try {
                 await converter.ConvertAsync(_path, _output, progress, _cancellationTokenSource.Token, status, timeReaming);
             }
@@ -38,7 +38,7 @@ namespace Boxinator_V2 {
                 MessageBox.Show(@"Operation was stopped");
             }
             catch (Exception ex) {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
             }
             finally {
                 _cancellationTokenSource.Dispose();
