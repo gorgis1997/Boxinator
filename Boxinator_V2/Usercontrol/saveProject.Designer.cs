@@ -110,6 +110,7 @@ namespace Boxinator_V2.Usercontrol {
             this.btnBoxinator.TabIndex = 11;
             this.btnBoxinator.Text = "Boxinator format";
             this.btnBoxinator.UseVisualStyleBackColor = false;
+            this.btnBoxinator.Click += new System.EventHandler(this.btnBoxinator_Click);
             // 
             // panel1
             // 
@@ -132,7 +133,7 @@ namespace Boxinator_V2.Usercontrol {
             this.openProjectLabel.TabIndex = 0;
             this.openProjectLabel.Text = "Saving project..";
             // 
-            // saveProjectt
+            // saveProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -145,7 +146,7 @@ namespace Boxinator_V2.Usercontrol {
             this.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.Name = "saveProjectt";
+            this.Name = "saveProject";
             this.Text = "saveProjectt";
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

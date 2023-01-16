@@ -28,7 +28,7 @@ class VideoConverter {
                     cancellationToken.ThrowIfCancellationRequested();
 
                     using (Bitmap frame = reader.ReadVideoFrame()) {
-                        string outputFile = Path.Combine(outputFolder, $"frame{i:D8}.png");
+                        string outputFile = Path.Combine(outputFolder, $"frame{i:D8}");
                         frame.Save(outputFile, ImageFormat.Jpeg);
                     }
 

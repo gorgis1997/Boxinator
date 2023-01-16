@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Accord.IO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Boxinator_V2.Usercontrol
 {
@@ -33,6 +38,7 @@ namespace Boxinator_V2.Usercontrol
         List<int> _keyframes = new List<int>();
         
         public void dboard_Load(string catPath, string path, string projectName, bool modeVideo) {
+            comboBox1.Items.Clear();
             Logger.Log("CATPATH: "+ catPath + "\n" + "Dashboard loading " + "\n" + "Path: " + path + "\n" + "Project Name: " + projectName + "\n" + "Mode: " + (modeVideo? "Video" : "Image"));
             if (modeVideo) {
                 var converterDialog = new ConverterDialogForm(path);
@@ -44,7 +50,6 @@ namespace Boxinator_V2.Usercontrol
                 path = converterDialog.Output();
             }
             label1.Text = "Dashboard - " + projectName;
-            //comboBox1.Items.AddRange();
             _project = new Project(projectName, path);
             _project.InitializeImages();
             pictureBox1.Size = panel2.Size;
@@ -56,6 +61,53 @@ namespace Boxinator_V2.Usercontrol
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             this.SizeChanged += new EventHandler(Form1_SizeChanged);
             Logger.Log("Dashboard loaded");
+            SetImage(0);
+
+            _timer = new Timer();
+            _timer.Interval = 33;
+            _timer.Tick += TimerEventProcessor;
+            _keyframes = new List<int>();
+            EnableControls();
+        }
+
+        public string SaveProjectBoxinator() {
+            Dictionary<int, List<PercentageRectangle>> data = new Dictionary<int, List<PercentageRectangle>>();
+
+            for (int i = 0; i < _project.GetImageCount()-1; i++) {
+                int frame = i;
+                var boxes = _project.GetBoxes(i);
+                data[frame] = boxes;
+            }
+
+            string json = JsonConvert.SerializeObject(data);
+            return json;
+        }
+        
+
+        public void LoadProjectBoxinator(string path, string imagePath) {
+            string json = File.ReadAllText(path);
+            Dictionary<int, List<PercentageRectangle>> data = JsonConvert.DeserializeObject<Dictionary<int, List<PercentageRectangle>>>(json);
+
+            var projectName = "Open";
+            label1.Text = "Dashboard - " + projectName;
+            _project = new Project(projectName, imagePath);
+            _project.InitializeImages();
+            
+            foreach (var frame in data) {
+                var boxes = frame.Value;
+                foreach (var box in boxes) {
+                    _project.AddNewBox(frame.Key, box);
+                }
+            }
+            
+            pictureBox1.Size = panel2.Size;
+            pictureBox1.Location = new Point(0, 0);
+            trackBar1.Maximum = _project.GetImageCount();
+            trackBar1.TickFrequency = trackBar1.Maximum / 10;
+            frameLabel.Text = "/ " + trackBar1.Maximum.ToString();
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            this.SizeChanged += new EventHandler(Form1_SizeChanged);
+            Logger.Log("Dashboard opened");
             SetImage(0);
 
             _timer = new Timer();

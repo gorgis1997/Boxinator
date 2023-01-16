@@ -107,7 +107,7 @@
       <DependentUpon>newProject.cs</DependentUpon>
     </Compile>
     <Compile Include="Usercontrol\openProject.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Usercontrol\openProject.Designer.cs">
       <DependentUpon>openProject.cs</DependentUpon>

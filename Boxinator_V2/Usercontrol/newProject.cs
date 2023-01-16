@@ -116,5 +116,6 @@ namespace Boxinator_V2.Usercontrol {
                 tb_folderpath.Text = folderBrowserDialog1.SelectedPath;
             }
         }
+        
     }
 }

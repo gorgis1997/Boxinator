@@ -10,5 +10,12 @@ namespace Boxinator_V2.Usercontrol {
         private void btnCancel_Click(object sender, EventArgs e) {
             DialogResult = DialogResult.Cancel;
         }
+
+
+        // BOXINATOR FORMAT
+        private void btnBoxinator_Click(object sender, EventArgs e) {
+            
+            DialogResult = DialogResult.OK;
+        }
     }
 }
