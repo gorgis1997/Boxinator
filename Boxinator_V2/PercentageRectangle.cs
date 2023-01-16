@@ -36,7 +36,7 @@ namespace Boxinator_V2 {
         
         // ToString
         public override string ToString() {
-            return string.Format("X: {0}, Y: {1}, Width: {2}, Height: {3}, ID: {4}, Category{5}", (object)X, (object)Y, (object)Width, (object)Height, (object)Id, (object)CategoryTag);
+            return string.Format("X: {0}, Y: {1}, Width: {2}, Height: {3}, ID: {4}, Category: {5}", (object)X, (object)Y, (object)Width, (object)Height, (object)Id, (object)CategoryTag);
         }
         
         // Copy
