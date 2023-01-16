@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -30,14 +31,47 @@ namespace Boxinator_V2 {
         public Bitmap GetImage(int index) {
             // Check if index is within range
             if (index < 0 || index >= images.Length) {
-                Bitmap error = new Bitmap(100, 100);
+                Bitmap error = (Bitmap) Properties.Resources.ResourceManager.GetObject("BOXINATOR_v3");
                 return error;
             }
             return images[index].Get();
         }
         
+        public List<PercentageRectangle> GetBoxes(int index) {
+            // Check if index is within range
+            if (index < 0 || index >= images.Length) {
+                return new List<PercentageRectangle>();
+            }
+            return images[index].GetBoxes();
+        }
+
+
         public int GetImageCount() {
             return images.Length;
+        }
+        
+        public void PermeateNewBox(int index, PercentageRectangle box) {
+            // Loop through all images and add the box to them
+            // Start from index to end of images
+            for (int i = index; i < images.Length; i++) {
+                images[i].AddBox(box.Copy());
+            }
+        }
+        
+        public void PermeateDeleteBox(int index, int id) {
+            // Loop through all images and delete the box from them
+            // Start from index to end of images
+            for (int i = index; i < images.Length; i++) {
+                images[i].DeleteBox(id);
+            }
+        }
+        
+        public void PermeateMovedBox(int index, int id, float x, float y, float width, float height) {
+            // Loop through all images and move the box in them
+            // Start from index to end of images
+            for (int i = index; i < images.Length; i++) {
+                images[i].MoveBox(id, x, y, width, height);
+            }
         }
     }
 }
