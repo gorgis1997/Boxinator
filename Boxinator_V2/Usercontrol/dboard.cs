@@ -96,6 +96,9 @@ namespace Boxinator_V2.Usercontrol
 
         
         public void AddCategory(string name) {
+            if (comboBox1.Items.Contains(name) || name == "") {
+                return;
+            }
             comboBox1.Items.Add(name);
         }
         

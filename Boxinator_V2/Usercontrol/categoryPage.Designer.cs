@@ -72,9 +72,9 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.textBox1.ForeColor = System.Drawing.Color.Black;
-            this.textBox1.Location = new System.Drawing.Point(234, 581);
+            this.textBox1.Location = new System.Drawing.Point(316, 567);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(465, 24);
+            this.textBox1.Size = new System.Drawing.Size(383, 24);
             this.textBox1.TabIndex = 12;
             // 
             // categoryPage

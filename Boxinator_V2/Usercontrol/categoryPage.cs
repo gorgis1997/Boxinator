@@ -50,7 +50,11 @@ namespace Boxinator_V2.Usercontrol
 
         public string AddCategory() {
             string category = textBox1.Text;
-            listView1.Items.Add(category);
+            if (category != "")
+            {
+                listView1.Items.Add(category);
+            }
+            textBox1.Text = "";
             return category;
         }
 
