@@ -15,9 +15,9 @@ To move a box, click on it to select it, then click and hold the left mouse butt
 
 To resize a box, click on it to select it, then click and hold one of the handles (small squares) on the edges of the box and drag it to resize the box.
 
-To delete a box, select it and press the delete key on your keyboard or right click and select delete from context menu
+To delete a box, select it and press the delete key on your keyboard.
 
-To mark a frame as a keyframe, select it and press the k key or use the button provided in UI
+To mark a frame as a keyframe, select the keyframe button. This defines the starting and ending points of a smooth transition
 
 all frames between keyframes are automatically interpolated, which means that all the boxes in the keyframe will be copied to all frames between keyframes.
 
