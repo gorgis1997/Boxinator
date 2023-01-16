@@ -50,6 +50,14 @@ namespace Boxinator_V2 {
             return images.Length;
         }
         
+        public void AddNewBox(int index, PercentageRectangle box) {
+            // Check if index is within range
+            if (index < 0 || index >= images.Length) {
+                return;
+            }
+            images[index].AddBox(box);
+        }
+        
         public void PermeateNewBox(int index, PercentageRectangle box) {
             // Loop through all images and add the box to them
             // Start from index to end of images

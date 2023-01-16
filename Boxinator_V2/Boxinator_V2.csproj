@@ -64,12 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Category.cs" />
-    <Compile Include="ConverterDialogForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ConverterDialogForm.Designer.cs">
-      <DependentUpon>ConverterDialogForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +81,12 @@
     </Compile>
     <Compile Include="Usercontrol\categoryPage.Designer.cs">
       <DependentUpon>categoryPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usercontrol\ConverterDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usercontrol\ConverterDialogForm.Designer.cs">
+      <DependentUpon>ConverterDialogForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Usercontrol\dboard.cs">
       <SubType>UserControl</SubType>
@@ -107,15 +107,18 @@
       <DependentUpon>newProject.cs</DependentUpon>
     </Compile>
     <Compile Include="Usercontrol\openProject.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Usercontrol\openProject.Designer.cs">
       <DependentUpon>openProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Usercontrol\saveProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usercontrol\saveProject.Designer.cs">
+      <DependentUpon>saveProject.cs</DependentUpon>
+    </Compile>
     <Compile Include="VideoConverter.cs" />
-    <EmbeddedResource Include="ConverterDialogForm.resx">
-      <DependentUpon>ConverterDialogForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,6 +135,9 @@
     <EmbeddedResource Include="Usercontrol\categoryPage.resx">
       <DependentUpon>categoryPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Usercontrol\ConverterDialogForm.resx">
+      <DependentUpon>ConverterDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Usercontrol\dboard.resx">
       <DependentUpon>dboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Usercontrol\openProject.resx">
       <DependentUpon>openProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usercontrol\saveProject.resx">
+      <DependentUpon>saveProject.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Boxinator_V2.Properties;
+using Newtonsoft.Json;
 
 namespace Boxinator_V2
 {
@@ -18,7 +20,7 @@ namespace Boxinator_V2
         private readonly newProject _newProject = new newProject();
         private readonly openProject _openProject = new openProject();
         private readonly categoryPage _categoryPage = new categoryPage();
-        
+
         private Button _submitButton;
         private Button _addCategoryButton;
         private Button _removeCategoryButton;
@@ -87,7 +89,7 @@ namespace Boxinator_V2
 
         private void SubmitNewProject(object sender, EventArgs e) {
             if (string.IsNullOrEmpty(_newProject.ProjectName) || string.IsNullOrEmpty(_newProject.ProjectPath)) {
-                MessageBox.Show("FILL OUT THE FIELDS YO", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fill out all fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             if (!System.IO.File.Exists(_newProject.ProjectCat))
@@ -98,7 +100,7 @@ namespace Boxinator_V2
             else if (_newProject.ProjectModeIsVideo) {
                 // Check path if video file exists
                 if (!System.IO.File.Exists(_newProject.ProjectPath)) {
-                    MessageBox.Show("Video file does not exist", "Error mdfkr", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Video file does not exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else {
                     Category category = new Category(_newProject.ProjectCat);
@@ -106,6 +108,7 @@ namespace Boxinator_V2
                     _dashboard.loadCategories(category);
                     _categoryPage.loadTags(category);
                     addUserControl(_dashboard);
+                    highlightButton(dashboardButton);
                 }
             }
             else {
@@ -120,6 +123,7 @@ namespace Boxinator_V2
                     _dashboard.loadCategories(category);
                     _categoryPage.loadTags(category);
                     addUserControl(_dashboard);
+                    highlightButton(dashboardButton);
                 }
             }
         }
@@ -174,8 +178,17 @@ namespace Boxinator_V2
 
         private void openButton_Click(object sender, EventArgs e)
         {
-            highlightButton(openButton);
-            addUserControl(_openProject);
+            var openDia = new openProject();
+            if (openDia.ShowDialog() == DialogResult.OK) {
+                string imagePath = openDia.imagePath;
+                string boxPath = openDia.boxinatorPath;
+                
+                _dashboard.LoadProjectBoxinator(boxPath, imagePath);
+                
+                highlightButton(dashboardButton);
+                addUserControl(_dashboard);
+            }
+            
         }
 
         private void dashboardButton_Click(object sender, EventArgs e)
@@ -201,6 +214,44 @@ namespace Boxinator_V2
         {
             highlightButton(categoryButton);
             addUserControl(_categoryPage);
+        }
+
+        private void saveButton_Click(object sender, EventArgs e) {
+            // Pop up a save dialog
+            var saveDia = new saveProject();
+            var result = saveDia.ShowDialog();
+            if (result == DialogResult.Cancel) {
+                return;
+            }
+            else if (result == DialogResult.OK) {
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Filter = "Boxinator Project|*.boxinator";
+                saveFileDialog1.Title = "Save a Boxinator Project";
+                saveFileDialog1.ShowDialog();
+            
+                // If the file name is not an empty string open it for saving.
+                if (saveFileDialog1.FileName != "") {
+                    var data = _dashboard.SaveProjectBoxinator();
+                    //string json = JsonConvert.SerializeObject(data);
+                    using (StreamWriter save = new StreamWriter(saveFileDialog1.FileName, false))
+                    {
+                        save.Write(data);
+                    }
+                }
+            }
+            else if( result == DialogResult.Yes) {
+                // Save as image
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Filter = "Text file|*.txt";
+                saveFileDialog1.Title = "Save a Boxinator Project";
+                saveFileDialog1.ShowDialog();
+            
+                // If the file name is not an empty string open it for saving.
+                if (saveFileDialog1.FileName != "") {
+                    _dashboard.SaveRawText(saveFileDialog1.FileName);
+                }
+            }
+
         }
     }
 }
