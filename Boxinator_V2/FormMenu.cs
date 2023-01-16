@@ -45,6 +45,7 @@ namespace Boxinator_V2
             _submitButton.Visible = false;
             _submitButton.Enabled = false;
             _submitButton.Click += SubmitNewProject;
+            _submitButton.ForeColor = Color.White;
         }
 
         private void SubmitNewProject(object sender, EventArgs e) {
