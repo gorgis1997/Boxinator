@@ -91,7 +91,7 @@ namespace Boxinator_V2.Usercontrol {
             this.textBox1.BackColor = System.Drawing.Color.White;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.textBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.textBox1.ForeColor = System.Drawing.SystemColors.Desktop;
             this.textBox1.Location = new System.Drawing.Point(8, 31);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(385, 22);
@@ -133,7 +133,7 @@ namespace Boxinator_V2.Usercontrol {
             this.tb_folderpath.BackColor = System.Drawing.Color.White;
             this.tb_folderpath.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_folderpath.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.tb_folderpath.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.tb_folderpath.ForeColor = System.Drawing.SystemColors.Desktop;
             this.tb_folderpath.Location = new System.Drawing.Point(8, 94);
             this.tb_folderpath.Name = "tb_folderpath";
             this.tb_folderpath.Size = new System.Drawing.Size(385, 22);

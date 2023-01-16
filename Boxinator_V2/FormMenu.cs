@@ -184,7 +184,11 @@ namespace Boxinator_V2
                 string boxPath = openDia.boxinatorPath;
                 
                 _dashboard.LoadProjectBoxinator(boxPath, imagePath);
+                
+                highlightButton(dashboardButton);
+                addUserControl(_dashboard);
             }
+            
         }
 
         private void dashboardButton_Click(object sender, EventArgs e)
@@ -235,8 +239,19 @@ namespace Boxinator_V2
                     }
                 }
             }
-            highlightButton(dashboardButton);
-            addUserControl(_dashboard);
+            else if( result == DialogResult.Yes) {
+                // Save as image
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Filter = "Text file|*.txt";
+                saveFileDialog1.Title = "Save a Boxinator Project";
+                saveFileDialog1.ShowDialog();
+            
+                // If the file name is not an empty string open it for saving.
+                if (saveFileDialog1.FileName != "") {
+                    _dashboard.SaveRawText(saveFileDialog1.FileName);
+                }
+            }
+
         }
     }
 }

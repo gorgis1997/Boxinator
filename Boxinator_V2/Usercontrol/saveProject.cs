@@ -14,8 +14,12 @@ namespace Boxinator_V2.Usercontrol {
 
         // BOXINATOR FORMAT
         private void btnBoxinator_Click(object sender, EventArgs e) {
-            
             DialogResult = DialogResult.OK;
+        }
+
+        // RAW
+        private void btnRaw_Click(object sender, EventArgs e) {
+            DialogResult = DialogResult.Yes;
         }
     }
 }

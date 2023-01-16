@@ -82,7 +82,68 @@ namespace Boxinator_V2.Usercontrol
             string json = JsonConvert.SerializeObject(data);
             return json;
         }
-        
+
+        public void SaveRawText(string path) {
+            using (StreamWriter save = new StreamWriter(path, true))
+            {
+                for (int i = 0; i < _project.GetImageCount()-1; i++) { ;
+                    var boxes = _project.GetBoxes(i);
+                    string entry = "Frame " + i.ToString() + ": \n";
+                    foreach (var box in boxes) {
+                        entry += box.ToString() + "\n";
+                    }
+
+                    save.WriteLine(entry);
+                }
+            }
+        }
+
+        /*
+        public string SaveCoco() {
+            var cocoFormat = new {
+                images = new List<object>(),
+                annotations = new List<object>(),
+                categories = new List<object>()
+            };
+
+            for (int i = 0; i < _project.GetImageCount() - 1; i++) {
+                var boxes = _project.GetBoxes(i);
+
+                int imageId = i + 1;
+                string fileName = $"frame{i:D8}.jpg";
+                int width = _project.GetImageWidth();
+                int height = _project.GetImageHeight();
+
+                cocoFormat.images.Add(new {
+                    id = imageId,
+                    file_name = fileName,
+                    width = width,
+                    height = height
+                });
+
+                int annotationId = 1;
+                foreach (var box in boxes) {
+                    int categoryId = _project.GetCategoryId(box.CategoryTag);
+                    cocoFormat.annotations.Add(new {
+                        id = annotationId,
+                        image_id = imageId,
+                        category_id = categoryId,
+                        bbox = new[] {box.X, box.Y, box.Width, box.Height},
+                        area = box.Width * box.Height,
+                        iscrowd = 0
+                    });
+                    annotationId++;
+                }
+            }
+
+            var categories = _project.GetCategories();
+            int categoryId = 1;
+            foreach (var category in categories) {
+                cocoFormat.categories
+            }
+        }
+
+*/
 
         public void LoadProjectBoxinator(string path, string imagePath) {
             string json = File.ReadAllText(path);

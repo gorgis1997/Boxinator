@@ -95,6 +95,7 @@ namespace Boxinator_V2.Usercontrol {
             this.btnRaw.TabIndex = 12;
             this.btnRaw.Text = "Raw text";
             this.btnRaw.UseVisualStyleBackColor = false;
+            this.btnRaw.Click += new System.EventHandler(this.btnRaw_Click);
             // 
             // btnBoxinator
             // 
