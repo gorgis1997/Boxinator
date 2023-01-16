@@ -20,6 +20,8 @@ namespace Boxinator_V2
         private readonly categoryPage _categoryPage = new categoryPage();
         
         private Button _submitButton;
+        private Button _addCategoryButton;
+        private Button _removeCategoryButton;
 
         public FormMenu()
         {
@@ -27,6 +29,7 @@ namespace Boxinator_V2
             //categ.Cat(); //TEMP
             InitializeComponent();
             CreateSubmitButton();
+            CreateCatButtons();
             _home.Dock = DockStyle.Fill;
             _categoryPage.Dock = DockStyle.Fill;
             _dashboard.Dock = DockStyle.Fill;
@@ -46,6 +49,40 @@ namespace Boxinator_V2
             _submitButton.Enabled = false;
             _submitButton.Click += SubmitNewProject;
             _submitButton.ForeColor = Color.White;
+        }
+
+        private void CreateCatButtons() {
+            _addCategoryButton = new Button();
+            _removeCategoryButton = new Button();
+            
+            _addCategoryButton.Text = @"Add";
+            _removeCategoryButton.Text = @"Remove";
+            
+            _addCategoryButton.Size = new Size(150, 60);
+            _removeCategoryButton.Size = new Size(150, 60);
+            
+            _addCategoryButton.Location = new Point(10, Size.Height - 50 - _addCategoryButton.Size.Height);
+            _removeCategoryButton.Location = new Point(20 + _addCategoryButton.Size.Width, Size.Height - 50 - _removeCategoryButton.Size.Height);
+            
+            _addCategoryButton.Visible = false;
+            _removeCategoryButton.Visible = false;
+            
+            _addCategoryButton.Enabled = false;
+            _removeCategoryButton.Enabled = false;
+            
+            _addCategoryButton.Click += AddCategory;
+            _removeCategoryButton.Click += RemoveCategory;
+            
+        }
+        
+        private void AddCategory(object sender, EventArgs e) {
+            var cat = _categoryPage.AddCategory();
+            _dashboard.AddCategory(cat);
+        }
+        
+        private void RemoveCategory(object sender, EventArgs e) {
+            var cat = _categoryPage.RemoveCategory();
+            _dashboard.RemoveCategory(cat);
         }
 
         private void SubmitNewProject(object sender, EventArgs e) {
@@ -100,6 +137,23 @@ namespace Boxinator_V2
             else {
                 _submitButton.Visible = false;
                 _submitButton.Enabled = false;
+            }
+
+            if (userControl == _categoryPage) {
+                panelMainWindow.Controls.Add(_addCategoryButton);
+                panelMainWindow.Controls.Add(_removeCategoryButton);
+                _addCategoryButton.Visible = true;
+                _removeCategoryButton.Visible = true;
+                _addCategoryButton.Enabled = true;
+                _removeCategoryButton.Enabled = true;
+                _addCategoryButton.BringToFront();
+                _removeCategoryButton.BringToFront();
+            }
+            else {
+                _addCategoryButton.Visible = false;
+                _removeCategoryButton.Visible = false;
+                _addCategoryButton.Enabled = false;
+                _removeCategoryButton.Enabled = false;
             }
         }
 

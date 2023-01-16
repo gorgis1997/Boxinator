@@ -94,6 +94,15 @@ namespace Boxinator_V2.Usercontrol
         }
         private Size _originalSize;
 
+        
+        public void AddCategory(string name) {
+            comboBox1.Items.Add(name);
+        }
+        
+        public void RemoveCategory(string name) {
+            comboBox1.Items.Remove(name);
+        }
+        
         public void loadCategories(Category category)
         {
             var list = category.GetCategories();
