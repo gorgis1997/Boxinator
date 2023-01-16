@@ -181,6 +181,9 @@ namespace Boxinator_V2.Usercontrol
             {
                 var rectangle = box.GetRectangle(pictureBox1.Size);
                 e.Graphics.DrawRectangle(Pens.Red, rectangle);
+                e.Graphics.FillRectangle(Brushes.Black, new Rectangle(rectangle.X, rectangle.Y, 50, 20));
+                e.Graphics.DrawString(box.CategoryTag + "_" +box.Id.ToString(), new Font("Arial", 10), Brushes.Red, new PointF(rectangle.X, rectangle.Y));
+
             }
 
             // Draw selected box
@@ -205,7 +208,7 @@ namespace Boxinator_V2.Usercontrol
                     _selectedBox = _highlightedBox;
             }
             else {
-                _selectedBox = new PercentageRectangle((float)e.X / pictureBox1.Width, (float)e.Y / pictureBox1.Height, 0, 0, _nextId++);
+                _selectedBox = new PercentageRectangle((float)e.X / pictureBox1.Width, (float)e.Y / pictureBox1.Height, 0, 0, _nextId++, comboBox1.SelectedItem.ToString());
             }
             
             pictureBox1.Invalidate();
@@ -241,9 +244,14 @@ namespace Boxinator_V2.Usercontrol
                     }
                     Logger.LogDebug("Current box before adding to list: " + _selectedBox.ToString());
                     
-                    //_boxes.Add(_selectedBox.Copy());
-                    _project.PermeateNewBox(trackBar1.Value, _selectedBox.Copy());
-                    Logger.Log("Added box " + _selectedBox.ToString() + " to list, total boxes: " + _boxes.Count);
+                    // If box has minimum size, add it to list
+                    if (_selectedBox.Width > 0.01 && _selectedBox.Height > 0.01) {
+                        _project.PermeateNewBox(trackBar1.Value, _selectedBox.Copy());
+                        Logger.Log("Added box " + _selectedBox.ToString() + " to list, total boxes: " + _boxes.Count);
+                    }
+                    else {
+                        Logger.LogDebug("Box too small, not added to list");
+                    }
                 }
                 Logger.LogDebug("Boxes: " + _boxes.Count.ToString());
                 _selectedBox = PercentageRectangle.Empty;
@@ -478,7 +486,7 @@ namespace Boxinator_V2.Usercontrol
                 var deltaHeight = (boxCurrent.Height - box.Height) / framesBetween;
                 for (var i = 1; i <= framesBetween; i++) {
                     var frame = start + i;
-                    var interpolatedBox = new PercentageRectangle(box.X + deltaX * i, box.Y + deltaY * i, box.Width + deltaWidth * i, box.Height + deltaHeight * i, box.Id);
+                    var interpolatedBox = new PercentageRectangle(box.X + deltaX * i, box.Y + deltaY * i, box.Width + deltaWidth * i, box.Height + deltaHeight * i, box.Id, box.CategoryTag);
                     _project.SetBoxAtFrame(frame, interpolatedBox);
                 }
             }
