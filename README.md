@@ -4,6 +4,8 @@
 ## Summary
 Boxinator is a software that supports annoation and 2d data labeling. Boxinator allows you to take in a text file containing multiple categories, then annotate those categories on images. The software also includes an integrated image sequence converter that converts image sequences into frames for annoation.
 
+![image](https://user-images.githubusercontent.com/67705679/212743579-fd22d949-e598-46da-b6c7-ef2aadbc1457.png)
+
 ## Getting started
 To start using Boxinator, you will need to download the exe file on your computer (Windows). Once installed, you can open the software and begin creating your first annoation project in the "New" tab. Here you fill in the following boxes and chose between video mode or image mode based on your situation. The category file is of type .txt and each row in this file is a new category e.g. car.
 
@@ -24,7 +26,7 @@ To start using Boxinator, you will need to download the exe file on your compute
 
 * Once you have labeled all the objects in a frame, you can move on to the next frame and repeat the process.
 
-![image](https://user-images.githubusercontent.com/67705679/212743579-fd22d949-e598-46da-b6c7-ef2aadbc1457.png)
+![ghg](https://user-images.githubusercontent.com/95533040/212937892-8ad07571-2b18-40ed-af27-13aad009641f.gif)
 
 ## Conclusion
 Boxinator is a software that makes it easy to annotate and label 2D data. With its integrated image sequence converter and support for importing categories, it is a versatile tool for any 2D annotation project.
